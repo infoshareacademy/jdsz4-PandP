@@ -1,8 +1,11 @@
+drop table weather_norm
+
 create table weather_norm as
 select
 date_part('year',to_date(date,'MM-dd-YYYY')) rok,
 date_part('month',to_date(date,'MM-dd-YYYY')) miesiac,
 date_part('day',to_date(date,'MM-dd-YYYY')) dzien,
+rtrim(to_char(to_date(date,'mm/dd/yyyy'),'day')) dzien_tygodnia,
 date,
 --max_temperature_f,
 ((max_temperature_f-32)/1.8)::numeric(2) max_temerature_C,
