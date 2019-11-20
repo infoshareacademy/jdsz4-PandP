@@ -8,6 +8,7 @@
 with wsad as
          (
              select distinct ztc.city city,
+                             wn.date date,
                              wn.rok rok,
                              wn.miesiac miesiac,
                              wn.dzien dzien,
@@ -23,7 +24,7 @@ with wsad as
                       from weather_norm wn
                       join zip_to_cities ztc on wn.zip_code = ztc.zip_code
              --where ztc.city = 'Mountain View'
-             group by ztc.city, wn.rok,  wn.miesiac, wn.dzien, wn.dzien_tygodnia,
+             group by ztc.city,wn.date, wn.rok,  wn.miesiac, wn.dzien, wn.dzien_tygodnia,
                       wn.min_temperature_C, wn.max_temerature_C, wn.mean_temperature_C,
                       wn.min_humidity, wn.max_humidity, wn.mean_humidity,
                       wn.mean_wind_speed_mph,  wn.max_wind_speed_mph
@@ -31,6 +32,7 @@ with wsad as
          )
 select
        city,
+       date,
        rok,
        miesiac,
        dzien,
@@ -55,5 +57,5 @@ select
 
 
 from wsad
-group by 1,2,3,4,5,6,8,10,12,14,16,18,20
+group by 1,2,3,4,5,6,7,9,11,13,15,17,19,21
 order by 2,3
