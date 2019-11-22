@@ -1,0 +1,4 @@
+city	rok	avg_min_temp_rok	yoy_proc_avg_min_temp_rok	avg_max_temp_rok	yoy_proc_avg_max_temp_rok	avg_mean_temp_rok	yoy_proc_avg_mean_temp_rok	avg_min_humidity_rok	yoy_proc_avg_min_humidity_rok	avg_max_humidity_rok	yoy_proc_avg_max_humidity_rok	avg_mean_humidity_rok	yoy_proc_avg_mean_humidity_rok	avg_mean_wind_speed_mph_rok	yoy_proc_avg_mean_wind_speed_mph_rok	avg_max_wind_speed_mph_rok	yoy_proc_avg_max_wind_speed_mph_rok
+Redwood City	2013	9.504		19.896		14.496		41.568		85.256		69.624		2.912		11.464	
+Redwood City	2014	11.8821917808219178	25	21.2191780821917808	7	16.3315068493150685	13	47.3698630136986301	14	87.1342465753424658	2	73.2767123287671233	5	4.0164383561643836	38	14.0520547945205479	23
+Redwood City	2015	11.9752066115702479	1	21.2272727272727273	0	16.3884297520661157	0	46.4214876033057851	-2	86.1570247933884298	-1	71.9669421487603306	-2	4.5826446280991736	14	14.0413223140495868	0
