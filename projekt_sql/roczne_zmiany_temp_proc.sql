@@ -49,5 +49,101 @@ select
        (((avg_max_wind_speed_mph_rok - lag(avg_max_wind_speed_mph_rok) over ())/lag(avg_max_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_max_wind_speed_mph_rok
 
 from wsad
+where city = 'Mountain View'
+group by 1,2,3,5,7,9,11,13,15,17
+union all
+select
+       city,
+       rok,
+       avg_min_temp_rok,
+       (((avg_min_temp_rok - lag(avg_min_temp_rok) over ())/lag(avg_min_temp_rok) over ())*100)::numeric(3) yoy_proc_avg_min_temp_rok,
+       avg_max_temp_rok,
+       (((avg_max_temp_rok - lag(avg_max_temp_rok) over ())/lag(avg_max_temp_rok) over ())*100)::numeric(3)  yoy_proc_avg_max_temp_rok,
+       avg_mean_temp_rok,
+       (((avg_mean_temp_rok - lag(avg_mean_temp_rok) over ())/lag(avg_mean_temp_rok) over ())*100)::numeric(3) yoy_proc_avg_mean_temp_rok,
+       avg_min_humidity_rok,
+       (((avg_min_humidity_rok - lag(avg_min_humidity_rok) over ())/lag(avg_min_humidity_rok) over ())*100)::numeric(3) yoy_proc_avg_min_humidity_rok,
+       avg_max_humidity_rok,
+       (((avg_max_humidity_rok - lag(avg_max_humidity_rok) over ())/lag(avg_max_humidity_rok) over ())*100)::numeric(3) yoy_proc_avg_max_humidity_rok,
+       avg_mean_humidity_rok,
+       (((avg_mean_humidity_rok - lag(avg_mean_humidity_rok) over ())/lag(avg_mean_humidity_rok) over ())*100)::numeric(3) yoy_proc_avg_mean_humidity_rok,
+       avg_mean_wind_speed_mph_rok,
+       (((avg_mean_wind_speed_mph_rok - lag(avg_mean_wind_speed_mph_rok) over ())/lag(avg_mean_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_mean_wind_speed_mph_rok,
+       avg_max_wind_speed_mph_rok,
+       (((avg_max_wind_speed_mph_rok - lag(avg_max_wind_speed_mph_rok) over ())/lag(avg_max_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_max_wind_speed_mph_rok
+
+from wsad
+where city = 'Palo Alto'
+group by 1,2,3,5,7,9,11,13,15,17
+union all
+select
+       city,
+       rok,
+       avg_min_temp_rok,
+       (((avg_min_temp_rok - lag(avg_min_temp_rok) over ())/lag(avg_min_temp_rok) over ())*100)::numeric(3) yoy_proc_avg_min_temp_rok,
+       avg_max_temp_rok,
+       (((avg_max_temp_rok - lag(avg_max_temp_rok) over ())/lag(avg_max_temp_rok) over ())*100)::numeric(3)  yoy_proc_avg_max_temp_rok,
+       avg_mean_temp_rok,
+       (((avg_mean_temp_rok - lag(avg_mean_temp_rok) over ())/lag(avg_mean_temp_rok) over ())*100)::numeric(3) yoy_proc_avg_mean_temp_rok,
+       avg_min_humidity_rok,
+       (((avg_min_humidity_rok - lag(avg_min_humidity_rok) over ())/lag(avg_min_humidity_rok) over ())*100)::numeric(3) yoy_proc_avg_min_humidity_rok,
+       avg_max_humidity_rok,
+       (((avg_max_humidity_rok - lag(avg_max_humidity_rok) over ())/lag(avg_max_humidity_rok) over ())*100)::numeric(3) yoy_proc_avg_max_humidity_rok,
+       avg_mean_humidity_rok,
+       (((avg_mean_humidity_rok - lag(avg_mean_humidity_rok) over ())/lag(avg_mean_humidity_rok) over ())*100)::numeric(3) yoy_proc_avg_mean_humidity_rok,
+       avg_mean_wind_speed_mph_rok,
+       (((avg_mean_wind_speed_mph_rok - lag(avg_mean_wind_speed_mph_rok) over ())/lag(avg_mean_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_mean_wind_speed_mph_rok,
+       avg_max_wind_speed_mph_rok,
+       (((avg_max_wind_speed_mph_rok - lag(avg_max_wind_speed_mph_rok) over ())/lag(avg_max_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_max_wind_speed_mph_rok
+
+from wsad
 where city = 'Redwood City'
+group by 1,2,3,5,7,9,11,13,15,17
+union all
+select
+       city,
+       rok,
+       avg_min_temp_rok,
+       (((avg_min_temp_rok - lag(avg_min_temp_rok) over ())/lag(avg_min_temp_rok) over ())*100)::numeric(3) yoy_proc_avg_min_temp_rok,
+       avg_max_temp_rok,
+       (((avg_max_temp_rok - lag(avg_max_temp_rok) over ())/lag(avg_max_temp_rok) over ())*100)::numeric(3)  yoy_proc_avg_max_temp_rok,
+       avg_mean_temp_rok,
+       (((avg_mean_temp_rok - lag(avg_mean_temp_rok) over ())/lag(avg_mean_temp_rok) over ())*100)::numeric(3) yoy_proc_avg_mean_temp_rok,
+       avg_min_humidity_rok,
+       (((avg_min_humidity_rok - lag(avg_min_humidity_rok) over ())/lag(avg_min_humidity_rok) over ())*100)::numeric(3) yoy_proc_avg_min_humidity_rok,
+       avg_max_humidity_rok,
+       (((avg_max_humidity_rok - lag(avg_max_humidity_rok) over ())/lag(avg_max_humidity_rok) over ())*100)::numeric(3) yoy_proc_avg_max_humidity_rok,
+       avg_mean_humidity_rok,
+       (((avg_mean_humidity_rok - lag(avg_mean_humidity_rok) over ())/lag(avg_mean_humidity_rok) over ())*100)::numeric(3) yoy_proc_avg_mean_humidity_rok,
+       avg_mean_wind_speed_mph_rok,
+       (((avg_mean_wind_speed_mph_rok - lag(avg_mean_wind_speed_mph_rok) over ())/lag(avg_mean_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_mean_wind_speed_mph_rok,
+       avg_max_wind_speed_mph_rok,
+       (((avg_max_wind_speed_mph_rok - lag(avg_max_wind_speed_mph_rok) over ())/lag(avg_max_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_max_wind_speed_mph_rok
+
+from wsad
+where city = 'San Jose'
+group by 1,2,3,5,7,9,11,13,15,17
+union all
+select
+       city,
+       rok,
+       avg_min_temp_rok,
+       (((avg_min_temp_rok - lag(avg_min_temp_rok) over ())/lag(avg_min_temp_rok) over ())*100)::numeric(3) yoy_proc_avg_min_temp_rok,
+       avg_max_temp_rok,
+       (((avg_max_temp_rok - lag(avg_max_temp_rok) over ())/lag(avg_max_temp_rok) over ())*100)::numeric(3)  yoy_proc_avg_max_temp_rok,
+       avg_mean_temp_rok,
+       (((avg_mean_temp_rok - lag(avg_mean_temp_rok) over ())/lag(avg_mean_temp_rok) over ())*100)::numeric(3) yoy_proc_avg_mean_temp_rok,
+       avg_min_humidity_rok,
+       (((avg_min_humidity_rok - lag(avg_min_humidity_rok) over ())/lag(avg_min_humidity_rok) over ())*100)::numeric(3) yoy_proc_avg_min_humidity_rok,
+       avg_max_humidity_rok,
+       (((avg_max_humidity_rok - lag(avg_max_humidity_rok) over ())/lag(avg_max_humidity_rok) over ())*100)::numeric(3) yoy_proc_avg_max_humidity_rok,
+       avg_mean_humidity_rok,
+       (((avg_mean_humidity_rok - lag(avg_mean_humidity_rok) over ())/lag(avg_mean_humidity_rok) over ())*100)::numeric(3) yoy_proc_avg_mean_humidity_rok,
+       avg_mean_wind_speed_mph_rok,
+       (((avg_mean_wind_speed_mph_rok - lag(avg_mean_wind_speed_mph_rok) over ())/lag(avg_mean_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_mean_wind_speed_mph_rok,
+       avg_max_wind_speed_mph_rok,
+       (((avg_max_wind_speed_mph_rok - lag(avg_max_wind_speed_mph_rok) over ())/lag(avg_max_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_max_wind_speed_mph_rok
+
+from wsad
+where city = 'San Francisco'
 group by 1,2,3,5,7,9,11,13,15,17
