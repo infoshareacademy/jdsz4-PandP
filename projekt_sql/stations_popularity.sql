@@ -12,7 +12,9 @@
    4. w zależności od pory dnia (wykorzystać rozkład pogrupowany po godzinach)
 
 
-      popularna stacja - taka, ktora najczesciej jest poczatkowa - kolejne podejście
+      popularna stacja - taka, ktora najczesciej jest poczatkowa - kolejne podejście - Mateusz
+
+   łączna ilość rowerów w obiegu - dodatkowy
 
  */
 
@@ -119,7 +121,7 @@ order by dzien_tygodnia asc, rk asc
 )
 select *
 from dt_rank
-where dt_rank.rk <= 3;
+where dt_rank.rk <= 10;
 
 
 
@@ -143,14 +145,14 @@ order by avg_popularnosc_stacji desc, avg_dostepne_rowery asc;
 
 
 
--- 3 najbardziej popularne stacje dla każdego z miesięcy
+--  najbardziej popularne stacje dla każdego z miesięcy
 with rk_mies as (
     select
            to_char(sts.time_per_hour, 'MM-month') as miesiac,
            sts.station_id,
            avg(sts.avg_bikes_avail)  avg_dostepne_rowery,
            avg(sts.avg_docks_avail)  avg_dostepne_doki,
-           round(avg(sts.avg_docks_avail)/(avg(sts.avg_bikes_avail)+avg(sts.avg_docks_avail)),4)  avg_popularnosc_stacji,
+           round(avg(sts.avg_docks_avail)/(avg(sts.avg_bikes_avail)+avg(sts.avg_docks_avail)),4)  wykorzystanie_stacji,
            row_number() over (partition by to_char(sts.time_per_hour, 'MM-month') order by 1 - round(avg(sts.avg_bikes_avail) / (avg(sts.avg_bikes_avail) + avg(sts.avg_docks_avail)), 3) desc)  as rk
     from hourly_status sts
     group by miesiac, sts.station_id
@@ -158,7 +160,8 @@ with rk_mies as (
 )
 select *
 from rk_mies
-where rk_mies.rk <= 3;
+where rk <= 10;
+
 
 
 
@@ -196,7 +199,7 @@ with rk_godz as (
 )
 select *
 from rk_godz
-where rk_godz.rk <= 3;
+--where rk_godz.rk <= 10;
 
 
 
@@ -272,6 +275,8 @@ order by 3 desc;
 
 
 /*
+-- datę musiałem normalizować z uwagi na różnice w formatach daty
+
 -- drobne sprawdzenie
 select *
 from    hourly_status
@@ -283,6 +288,8 @@ and station_id = 10;
 
 -- po 5 najpopularniejszych stacji w przypadku eventów pogodowych + procentowy wpływ eventu pogodowego na zmianę popularności danej stacji
 -- poniższe pewnie można napisać prościej, ale kopiowałem wcześniejsze fragmenty kodu
+
+
 
 with stacje_rank_p_event as (
 with stacje_rank_day as (
@@ -347,14 +354,16 @@ where stacje_rank_p_event.rk <=5;
 ---------------------------------------------------------------------------
 ---------------------- popularność stacji jako wybór początkowej-----------
 ---------------------------------------------------------------------------
+---- WYKORZYTSAĆ KOD MATEUSZA
 
 select
-       start_station_id stacja_pocz,
+       start_station_id stacja_pocz_id,
+       start_station_name,
        count(*) ilosc,
        round((count(*) / sum(count(*)) over())*100,3) procent
 from trip
-group by start_station_id
-order by 2 desc;
+group by start_station_id, start_station_name
+order by 3 desc;
 
 
 
