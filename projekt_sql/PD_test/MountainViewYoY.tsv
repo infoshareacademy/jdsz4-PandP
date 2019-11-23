@@ -1,0 +1,4 @@
+city	rok	avg_min_temp_rok	yoy_proc_avg_min_temp_rok	avg_max_temp_rok	yoy_proc_avg_max_temp_rok	avg_mean_temp_rok	yoy_proc_avg_mean_temp_rok	avg_min_humidity_rok	yoy_proc_avg_min_humidity_rok	avg_max_humidity_rok	yoy_proc_avg_max_humidity_rok	avg_mean_humidity_rok	yoy_proc_avg_mean_humidity_rok	avg_mean_wind_speed_mph_rok	yoy_proc_avg_mean_wind_speed_mph_rok	avg_max_wind_speed_mph_rok	yoy_proc_avg_max_wind_speed_mph_rok
+Mountain View	2013	7.616		20.976		13.632		45.208		79.136		64.68		1.712		15.184	
+Mountain View	2014	11.6538461538461538	53	22.1868131868131868	6	16.8736263736263736	24	46.3818681318681319	3	84.8434065934065934	7	66.2307692307692308	2	5.25	207	17.293956043956044	14
+Mountain View	2015	11.4958333333333333	-1	22.0083333333333333	-1	16.9416666666666667	0	46.9541666666666667	1	84.4125	-1	65.9583333333333333	0	5.5843621399176955	6	16.7078189300411523	-3

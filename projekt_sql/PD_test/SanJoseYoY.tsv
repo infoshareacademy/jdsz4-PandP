@@ -1,0 +1,4 @@
+city	rok	avg_min_temp_rok	yoy_proc_avg_min_temp_rok	avg_max_temp_rok	yoy_proc_avg_max_temp_rok	avg_mean_temp_rok	yoy_proc_avg_mean_temp_rok	avg_min_humidity_rok	yoy_proc_avg_min_humidity_rok	avg_max_humidity_rok	yoy_proc_avg_max_humidity_rok	avg_mean_humidity_rok	yoy_proc_avg_mean_humidity_rok	avg_mean_wind_speed_mph_rok	yoy_proc_avg_mean_wind_speed_mph_rok	avg_max_wind_speed_mph_rok	yoy_proc_avg_max_wind_speed_mph_rok
+San Jose	2013	8.432		21.232		14.984		35.848		85.312		60.856		4.768		14.792	
+San Jose	2014	10.9835616438356164	30	22.6054794520547945	6	16.9479452054794521	13	41.8191780821917808	17	86.6	2	64.4684931506849315	6	6.1041095890410959	28	16.7041095890410959	13
+San Jose	2015	11.1769547325102881	2	22.7160493827160494	0	17.0905349794238683	1	43.345679012345679	4	84.7530864197530864	-2	64.3333333333333333	0	6.1687242798353909	1	16.8271604938271605	1

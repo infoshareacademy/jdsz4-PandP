@@ -1,0 +1,4 @@
+city	rok	avg_min_temp_rok	yoy_proc_avg_min_temp_rok	avg_max_temp_rok	yoy_proc_avg_max_temp_rok	avg_mean_temp_rok	yoy_proc_avg_mean_temp_rok	avg_min_humidity_rok	yoy_proc_avg_min_humidity_rok	avg_max_humidity_rok	yoy_proc_avg_max_humidity_rok	avg_mean_humidity_rok	yoy_proc_avg_mean_humidity_rok	avg_mean_wind_speed_mph_rok	yoy_proc_avg_mean_wind_speed_mph_rok	avg_max_wind_speed_mph_rok	yoy_proc_avg_max_wind_speed_mph_rok
+San Francisco	2013	10.08		19.352		14.888		45.744		81.88		64.056		8.344		20.392	
+San Francisco	2014	11.5863013698630137	15	20.5068493150684932	6	16.1287671232876712	8	52.3013698630136986	14	85.8356164383561644	5	69.3671232876712329	8	8.0547945205479452	-3	18.7452054794520548	-8
+San Francisco	2015	10.9669421487603306	-5	20.231404958677686	-1	15.6694214876033058	-3	52.384297520661157	0	87.7975206611570248	2	70.3884297520661157	1	8.3636363636363636	4	18.4669421487603306	-1
