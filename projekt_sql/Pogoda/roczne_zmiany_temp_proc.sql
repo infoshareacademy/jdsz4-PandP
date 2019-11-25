@@ -47,7 +47,7 @@ select
        avg_max_wind_speed_mph_rok,
        (((avg_max_wind_speed_mph_rok - lag(avg_max_wind_speed_mph_rok) over ())/lag(avg_max_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_max_wind_speed_mph_rok,
        avg_mean_zachmurzenie,
-       (((avg_mean_zachmurzenie - lag(avg_mean_zachmurzenie) over ())/lag(avg_mean_zachmurzenie) over ())*100)::numeric(3) MoM_avg_mean_zachmurzenie
+       (((avg_mean_zachmurzenie - lag(avg_mean_zachmurzenie) over ())/lag(avg_mean_zachmurzenie) over ())*100)::numeric(3) YoY_avg_mean_zachmurzenie
 from wsad
 where city = 'Mountain View'
 group by 1,2,3,5,7,9,11,13,15,17,19
@@ -72,7 +72,7 @@ select
        avg_max_wind_speed_mph_rok,
        (((avg_max_wind_speed_mph_rok - lag(avg_max_wind_speed_mph_rok) over ())/lag(avg_max_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_max_wind_speed_mph_rok,
        avg_mean_zachmurzenie,
-       (((avg_mean_zachmurzenie - lag(avg_mean_zachmurzenie) over ())/lag(avg_mean_zachmurzenie) over ())*100)::numeric(3) MoM_avg_mean_zachmurzenie
+       (((avg_mean_zachmurzenie - lag(avg_mean_zachmurzenie) over ())/lag(avg_mean_zachmurzenie) over ())*100)::numeric(3) YoY_avg_mean_zachmurzenie
 
 from wsad
 where city = 'Palo Alto'
@@ -98,7 +98,7 @@ select
        avg_max_wind_speed_mph_rok,
        (((avg_max_wind_speed_mph_rok - lag(avg_max_wind_speed_mph_rok) over ())/lag(avg_max_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_max_wind_speed_mph_rok,
        avg_mean_zachmurzenie,
-       (((avg_mean_zachmurzenie - lag(avg_mean_zachmurzenie) over ())/lag(avg_mean_zachmurzenie) over ())*100)::numeric(3) MoM_avg_mean_zachmurzenie
+       (((avg_mean_zachmurzenie - lag(avg_mean_zachmurzenie) over ())/lag(avg_mean_zachmurzenie) over ())*100)::numeric(3) YoY_avg_mean_zachmurzenie
 
 from wsad
 where city = 'Redwood City'
@@ -124,7 +124,7 @@ select
        avg_max_wind_speed_mph_rok,
        (((avg_max_wind_speed_mph_rok - lag(avg_max_wind_speed_mph_rok) over ())/lag(avg_max_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_max_wind_speed_mph_rok,
        avg_mean_zachmurzenie,
-       (((avg_mean_zachmurzenie - lag(avg_mean_zachmurzenie) over ())/lag(avg_mean_zachmurzenie) over ())*100)::numeric(3) MoM_avg_mean_zachmurzenie
+       (((avg_mean_zachmurzenie - lag(avg_mean_zachmurzenie) over ())/lag(avg_mean_zachmurzenie) over ())*100)::numeric(3) YoY_avg_mean_zachmurzenie
 
 from wsad
 where city = 'San Jose'
@@ -150,7 +150,7 @@ select
        avg_max_wind_speed_mph_rok,
        (((avg_max_wind_speed_mph_rok - lag(avg_max_wind_speed_mph_rok) over ())/lag(avg_max_wind_speed_mph_rok) over ())*100)::numeric(3) yoy_proc_avg_max_wind_speed_mph_rok,
        avg_mean_zachmurzenie,
-       (((avg_mean_zachmurzenie - lag(avg_mean_zachmurzenie) over ())/lag(avg_mean_zachmurzenie) over ())*100)::numeric(3) MoM_avg_mean_zachmurzenie
+       (((avg_mean_zachmurzenie - lag(avg_mean_zachmurzenie) over ())/lag(avg_mean_zachmurzenie) over ())*100)::numeric(3) YoY_avg_mean_zachmurzenie
 
 from wsad
 where city = 'San Francisco'
