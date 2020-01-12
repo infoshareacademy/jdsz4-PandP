@@ -69,5 +69,5 @@ from "ks-projects-201801" ks
 join filtered_country fc on fc.id=ks.id
 join filtered_duration fd on fd.id=ks.id
 join filtered_money fm on fm.id=ks.id
-where fc.country is not null
+where fc.country is not null and ks.state!='live' and ks.state!='suspended'
 order by 6
