@@ -286,3 +286,10 @@ duration = widgets.IntSlider(
     readout=True,
     readout_format='d'
 )
+
+campaign_name = widgets.Text(
+    value='Kickstarter Campaign',
+    placeholder='Type something',
+    description='Name',
+    disabled=False
+)
