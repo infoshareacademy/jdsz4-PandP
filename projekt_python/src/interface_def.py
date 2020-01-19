@@ -1,5 +1,7 @@
+# na wszelki wypadek import biblioteki widgetów, bo czasami wywalało błędy
 import ipywidgets as widgets
 
+# widget wyboru głównej kategorii
 main_category = widgets.Dropdown(
     options=['Art',
              'Fashion',
@@ -19,9 +21,13 @@ main_category = widgets.Dropdown(
     description='M. category',
     disabled=False,)
 
+# widget wyboru podkategorii, który tworzy się na podstawie wyboru głównej kategorii
 sub_category = widgets.Dropdown(
     description="Category")
 
+# o tutaj jest funkcja, która wykorzystuje słownik zbudowany na zasadzie {główne kategorie: adekwatne podkategorie}, 
+# żeby ustawić w dropdownie odpowiednie podkategorie
+# (to jest ogólnie de facto tak, że tworzymy zmienne typu widget, które mają odpowiednie parametry)
 def narrow_subcat(*args):
     sub_categories = {'Art': 
                       ['Sculpture',
@@ -225,10 +231,12 @@ def narrow_subcat(*args):
                          'Immersive',
              'not considered']}
                       
-    sub_category.options = list(sub_categories[main_category.value])
+    sub_category.options = list(sub_categories[main_category.value]) # w tym miejscu ustawiamy parametr dropdowna
 
-main_category.observe(narrow_subcat)
+# a tutaj ustawiamy ciągły nasłuch zmian w wyborze głównej kategorii i wywołanie funkcji zmiany parametru narrow_subcat
+main_category.observe(narrow_subcat) 
 
+# widget wyboru kraju
 country = widgets.Dropdown(
     options=['Australia',
              'Austria',
@@ -258,6 +266,7 @@ country = widgets.Dropdown(
     disabled=False,
 )
 
+# widget wyboru ile chcemy zebrać w kampanii
 goal = widgets.BoundedIntText(
     value=1,
     min=0,
@@ -267,6 +276,7 @@ goal = widgets.BoundedIntText(
     disabled=False
 )
 
+# widget wyboru waluty
 currency = widgets.Dropdown(
     options=['HKD','SGD','SEK','JPY','NOK','AUD','GBP','CHF','MXN','CAD','DKK','EUR','NZD','USD'],
     value='USD',
@@ -274,6 +284,7 @@ currency = widgets.Dropdown(
     disabled=False,
 )
 
+# widget wyboru czasu trwania kampanii
 duration = widgets.IntSlider(
     min=1,
     max=90,
@@ -287,6 +298,7 @@ duration = widgets.IntSlider(
     readout_format='d'
 )
 
+# widget do wpisania nazwy kamapanii
 campaign_name = widgets.Text(
     value='Kickstarter Campaign',
     placeholder='Type something',
