@@ -29,14 +29,14 @@ with filtered_country as
     when country='US' then 'United States'
     else 'blad'end
     as country
-from "ks-projects-201801"),
+from ks_projects_201801),
 
      filtered_duration as
 (select id,
         date(launched) as launched,
         date(deadline) as deadline,
         date(deadline)-date(launched) as duration
-from "ks-projects-201801"
+from ks_projects_201801
 where date_part('year', date(launched))!= '1970'
 ),
 
@@ -47,7 +47,7 @@ where date_part('year', date(launched))!= '1970'
         pledged as pledged_in_defined_currency,
         usd_goal_real as goal_in_usd,
         usd_pledged_real as pledged_in_usd
-from "ks-projects-201801" )
+from ks_projects_201801 )
 
 select ks.id,
        ks.name,
@@ -65,7 +65,7 @@ select ks.id,
        (fm.pledged_in_usd/fm.goal_in_usd)::numeric as percentage_of_money_collected,
        ks.backers,
        ks.state
-from "ks-projects-201801" ks
+from ks_projects_201801 ks
 join filtered_country fc on fc.id=ks.id
 join filtered_duration fd on fd.id=ks.id
 join filtered_money fm on fm.id=ks.id
