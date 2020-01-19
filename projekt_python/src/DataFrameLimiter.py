@@ -72,7 +72,7 @@ def basket_goal(goal):
         goal_max = 120000
     else:
         goal_min = 80000
-        goal_max = 20000000
+        goal_max = 20000000000
     return[goal_min, goal_max]
 
 
@@ -138,7 +138,8 @@ other_country_list = ['Australia',
                       # 'Spain',
                       # 'United States',
                       'Mexico',
-                      # 'Norway'
+                      # 'Norway',
+                      'Other'
                       ]
 
 
@@ -540,14 +541,14 @@ def limiter(df, mcat, cat, goal, dur, country, curr):
 
 
 
-pr_main_category = 'Technology'
-pr_category = 'Gadgets'
-#pr_category = 'not considered'
-pr_goal_usd = 700
-pr_duration = 30
-pr_country = 'United States'
-#pr_currency = 'USD'
-pr_currency = 'not considered'
+# pr_main_category = 'Technology'
+# pr_category = 'Gadgets'
+# #pr_category = 'not considered'
+# pr_goal_usd = 700
+# pr_duration = 30
+# pr_country = 'United States'
+# #pr_currency = 'USD'
+# pr_currency = 'not considered'
 
 
 # DF_limited = limiter(DF,pr_main_category,pr_category,pr_goal_usd,pr_duration,pr_country,pr_currency)
