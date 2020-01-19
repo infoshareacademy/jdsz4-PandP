@@ -260,6 +260,7 @@ country = widgets.Dropdown(
              'United States',
              'Mexico',
              'Norway',
+             'Poland',
              'Other'],
     value="United States",
     description="Country",
@@ -272,13 +273,13 @@ goal = widgets.BoundedIntText(
     min=0,
     max=1000000000,
     step=1,
-    description="Goal in $",
+    description="Goal",
     disabled=False
 )
 
 # widget wyboru waluty
 currency = widgets.Dropdown(
-    options=['HKD','SGD','SEK','JPY','NOK','AUD','GBP','CHF','MXN','CAD','DKK','EUR','NZD','USD'],
+    options=['HKD','SGD','SEK','JPY','NOK','AUD','GBP','CHF','MXN','CAD','DKK','EUR','NZD','USD','PLN'],
     value='USD',
     description="Currency",
     disabled=False,
