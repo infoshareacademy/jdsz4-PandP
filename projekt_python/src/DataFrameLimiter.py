@@ -536,8 +536,8 @@ def limiter(df, mcat, cat, goal, dur, country, curr):
 # pr_currency = 'USD'
 
 
-DF_limited = limiter(DF,pr_main_category,pr_category,pr_goal_usd,pr_duration,pr_country,pr_currency)
-
-print(DF_limited['currency'])
-print('ilosc "podobnych" :',DF_limited['id'].count())
-print(DF_limited[DF_limited['state'] == 'successful']['id'].count() / DF_limited['id'].count())
+# DF_limited = limiter(DF,pr_main_category,pr_category,pr_goal_usd,pr_duration,pr_country,pr_currency)
+#
+# print(DF_limited['currency'])
+# print('ilosc "podobnych" :',DF_limited['id'].count())
+# print(DF_limited[DF_limited['state'] == 'successful']['id'].count() / DF_limited['id'].count())
