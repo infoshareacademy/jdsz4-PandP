@@ -1,8 +1,3 @@
-import pandas as pd
-import os
-import glob
-from matplotlib import pyplot as plt
-
 # zawęzanie okna¶
 # nazwa funkcji: limiter(DF,name,main_category,category,goal_usd,duration,country,currency)
 
@@ -37,42 +32,22 @@ from matplotlib import pyplot as plt
 # po outpucie, ewentualny powrót z rozszerzeniem na kategorie lub waluty (lub inne - do dodania bez problemu) - MZ?
 
 
-
-file_path = (glob.glob(os.path.join(os.path.abspath(''), '**', '*kickstarter_filtered*.tsv'), recursive=True))
-
-DF = pd.read_csv(file_path[0], header = 0, sep='\t')
+#
+# file_path = (glob.glob(os.path.join(os.path.abspath(''), '**', '*kickstarter_filtered*.tsv'), recursive=True))
+#
+# DF = pd.read_csv(file_path[0], header = 0, sep='\t')
 
 
 #koszykownik dla zadanego goal
 
+goal_bins = [(0.00, 500.0), (500.0, 1000.0), (1000.0, 1500.0), (1500.0, 2200.0), (2200.0, 3000.0), (3000.0, 4000.0), (4000.0, 5000.0), (5000.0, 6500.0), (6500.0, 9000.0), (9000.0, 10000.0), (10000.0, 15000.0), (15000.0, 20381.13), (20381.13, 32223.0), (32223.0, 60000.0), (60000.0, 1663613900)]
+bin_tab_mod = 1.2
+
 def basket_goal(goal):
-    if goal <= 500:
-        goal_min = 0
-        goal_max = 600
-    elif goal <= 1000:
-        goal_min = 300
-        goal_max = 1200
-    elif goal <= 2000:
-        goal_min = 800
-        goal_max = 2500
-    elif goal <= 4000:
-        goal_min = 1500
-        goal_max = 5000
-    elif goal <= 10000:
-        goal_min = 4000
-        goal_max = 12000
-    elif goal <= 20000:
-        goal_min = 8000
-        goal_max = 25000
-    elif goal <= 40000:
-        goal_min = 16000
-        goal_max = 50000
-    elif goal < 100000:
-        goal_min = 30000
-        goal_max = 120000
-    else:
-        goal_min = 80000
-        goal_max = 20000000000
+    for bin in goal_bins:
+        if goal >= bin[0] and goal < bin[1] :
+            goal_min = bin[0]/bin_tab_mod
+            goal_max = bin[1]*bin_tab_mod
     return[goal_min, goal_max]
 
 
@@ -116,7 +91,8 @@ europe_list = [  # 'Australia',
                 'Spain',
                 # 'United States',
                 # 'Mexico',
-                'Norway']
+                'Norway',
+                'Poland']
 other_country_list = ['Australia',
                       # 'Austria',
                       # 'France',
@@ -139,7 +115,7 @@ other_country_list = ['Australia',
                       # 'United States',
                       'Mexico',
                       # 'Norway',
-                      'Other'
+                      'Other',
                       ]
 
 
@@ -505,10 +481,15 @@ def basket_country(country):
 #
 # ## definicja
 
+# kursy walut, bo korzystamy z USD w koszykowaniu goal ,
+# czyli musimy wiedzieć ile zbieramy w dolarach
+kursy_walut = {'SGD': 0.7218272535233189, 'EUR': 1.1238612937944434, 'DKK': 0.14862087297218637, 'CAD': 0.8145423808817589, 'AUD': 0.8029694136890776, 'GBP': 1.5207327949927543, 'USD': 1.0, 'MXN': 0.05303800288397823, 'HKD': 0.12838130718608456, 'CHF': 1.0320771710383756, 'JPY': 0.008826237200036304, 'SEK': 0.12031274002718356, 'NZD': 0.7616139550831179, 'NOK': 0.12166770926093867, 'PLN': 0.3125}
 
 def limiter(df, mcat, cat, goal, dur, country, curr):
-    goal_min = basket_goal(goal)[0]
-    goal_max = basket_goal(goal)[1]
+    goal_usd = kursy_walut.get[curr] * goal
+
+    goal_min = basket_goal(goal_usd)[0]
+    goal_max = basket_goal(goal_usd)[1]
     war_goal_min = df['goal_in_usd'] >= goal_min
     war_goal_max = df['goal_in_usd'] <= goal_max
 
