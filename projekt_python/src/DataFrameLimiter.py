@@ -1,3 +1,7 @@
+# import pandas as pd
+# import os
+# import glob
+
 # zawęzanie okna¶
 # nazwa funkcji: limiter(DF,name,main_category,category,goal_usd,duration,country,currency)
 
@@ -32,7 +36,7 @@
 # po outpucie, ewentualny powrót z rozszerzeniem na kategorie lub waluty (lub inne - do dodania bez problemu) - MZ?
 
 
-#
+
 # file_path = (glob.glob(os.path.join(os.path.abspath(''), '**', '*kickstarter_filtered*.tsv'), recursive=True))
 #
 # DF = pd.read_csv(file_path[0], header = 0, sep='\t')
@@ -486,7 +490,7 @@ def basket_country(country):
 kursy_walut = {'SGD': 0.7218272535233189, 'EUR': 1.1238612937944434, 'DKK': 0.14862087297218637, 'CAD': 0.8145423808817589, 'AUD': 0.8029694136890776, 'GBP': 1.5207327949927543, 'USD': 1.0, 'MXN': 0.05303800288397823, 'HKD': 0.12838130718608456, 'CHF': 1.0320771710383756, 'JPY': 0.008826237200036304, 'SEK': 0.12031274002718356, 'NZD': 0.7616139550831179, 'NOK': 0.12166770926093867, 'PLN': 0.3125}
 
 def limiter(df, mcat, cat, goal, dur, country, curr):
-    goal_usd = kursy_walut.get[curr] * goal
+    goal_usd = kursy_walut[curr] * goal
 
     goal_min = basket_goal(goal_usd)[0]
     goal_max = basket_goal(goal_usd)[1]
@@ -521,19 +525,19 @@ def limiter(df, mcat, cat, goal, dur, country, curr):
 
 
 
-
+#
 # pr_main_category = 'Technology'
-# pr_category = 'Gadgets'
-# #pr_category = 'not considered'
-# pr_goal_usd = 700
+# #pr_category = 'Gadgets'
+# pr_category = 'not considered'
+# pr_goal_usd = 5500
 # pr_duration = 30
 # pr_country = 'United States'
 # #pr_currency = 'USD'
-# pr_currency = 'not considered'
+# pr_currency = 'USD'
 
 
-# DF_limited = limiter(DF,pr_main_category,pr_category,pr_goal_usd,pr_duration,pr_country,pr_currency)
-#
-# print(DF_limited['currency'])
-# print('ilosc "podobnych" :',DF_limited['id'].count())
-# print(DF_limited[DF_limited['state'] == 'successful']['id'].count() / DF_limited['id'].count())
+DF_limited = limiter(DF,pr_main_category,pr_category,pr_goal_usd,pr_duration,pr_country,pr_currency)
+
+print(DF_limited['currency'])
+print('ilosc "podobnych" :',DF_limited['id'].count())
+print(DF_limited[DF_limited['state'] == 'successful']['id'].count() / DF_limited['id'].count())
