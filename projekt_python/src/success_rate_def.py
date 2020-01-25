@@ -1,3 +1,5 @@
+import pandas as pd
+from IPython.display import YouTubeVideo
 
 def success_ratio(data_frame):
     
@@ -27,3 +29,10 @@ def success_ratio(data_frame):
          
     else:
         print('something went really wrong, contact the admin!')
+
+
+# chiptune easter egg
+
+    if pd.unique(data_frame['category']):
+        if pd.unique(data_frame['category'])[0]=='Chiptune':
+            display(YouTubeVideo('rf_p3-8fTo0', autoplay=1, loop=1))
