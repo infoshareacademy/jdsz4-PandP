@@ -16,7 +16,8 @@ def success_ratio(data_frame):
             print('The overall success ratio is: ',round(success_ratio,4)*100,'%')
             print('However due to lack of sufficient data this is based on a very small number of past campaigns.\nIf you\'d like to check the odds for a bigger sample, please consider changing some of the parameters (e.g. use \'not considered\' or \'other\'')
             print('FYI, here are the campaigns we found similar:')
-            print(data_frame) # tutaj coś zmienić, żeby df się ładniej wyświetlało
+            display(data_frame)
+            # print(data_frame) # tutaj coś zmienić, żeby df się ładniej wyświetlało
         elif data_frame.shape[0] < 50:
             print('The overall success ratio is: ',round(success_ratio,4)*100,'%')
             print(f'However due to lack of sufficient data this is based on a limited number of past campaigns\n({data_frame_size} to be exact).\nIf you\'d like to check the odds for a bigger sample, please consider changing some of the parameters to either \'not considered\' or \'any\'')
