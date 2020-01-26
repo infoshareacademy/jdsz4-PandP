@@ -323,3 +323,19 @@ campaign_name = widgets.Text(
     description='Name',
     disabled=False
 )
+
+
+kursy_walut = {'SGD': 0.7218272535233189, 'EUR': 1.1238612937944434, 'DKK': 0.14862087297218637, 'CAD': 0.8145423808817589, 'AUD': 0.8029694136890776, 'GBP': 1.5207327949927543, 'USD': 1.0, 'MXN': 0.05303800288397823, 'HKD': 0.12838130718608456, 'CHF': 1.0320771710383756, 'JPY': 0.008826237200036304, 'SEK': 0.12031274002718356, 'NZD': 0.7616139550831179, 'NOK': 0.12166770926093867, 'PLN': 0.3125, 'Specify goal in USD':1}
+
+
+goal_in_usd = widgets.Text(
+    description="Goal in $",
+    disabled=True,
+)
+
+
+def convert_goal_to_usd(*args):
+    goal_in_usd.value = str(int(goal.value)*kursy_walut[currency.value])
+
+goal.observe(convert_goal_to_usd)
+country.observe(convert_goal_to_usd)
