@@ -7,6 +7,8 @@ goal_bins = [(0.00, 500.0), (500.0, 1000.0), (1000.0, 1500.0), (1500.0, 2200.0),
 bin_tab_mod = 1.2
 
 def basket_goal(goal):
+    if goal == 0:
+        return [0,200000000]
     for bin in goal_bins:
         if goal >= bin[0] and goal < bin[1] :
             goal_min = bin[0]/bin_tab_mod
@@ -18,7 +20,10 @@ def basket_goal(goal):
 # kosztkowanie w zależności od zadanego czasu trwania
 
 def basket_dur(dur):
-    if dur < 30:
+    if dur == 0:
+        dur_min = 0
+        dur_max = 100
+    elif dur < 30:
         dur_min = 0
         dur_max = 29
     elif dur == 30:
@@ -82,11 +87,14 @@ other_country_list = ['Australia',
                       'Other',
                       ]
 
+all_countries = europe_list + other_country_list + ['United States',]
 
 
 def basket_country(country):
     if country == 'United States':
         return ['United States']
+    elif country == 'not considered':
+        return all_countries
     elif country in europe_list:
         return europe_list
     elif country in other_country_list:
@@ -126,11 +134,7 @@ def limiter(df, mcat, cat, goal, dur, country, curr):
         war_cat = df['category'] != ''
 
 
-    if curr == 'not considered':
-        war_curr = df['currency'] != ''
-    elif curr == 'USD':
-        war_curr = df['currency'] == 'USD'
-    else:
-        war_curr = df['currency'] != 'USD'
 
-    return (df.loc[(war_goal_min) & (war_goal_max) & (war_mcat) & (war_cat) & (war_dur_max) & (war_dur_min) & (war_curr) & (war_country)])
+    return (df.loc[(war_goal_min) & (war_goal_max) & (war_mcat) & (war_cat) & (war_dur_max) & (war_dur_min) & (war_country)])
+
+

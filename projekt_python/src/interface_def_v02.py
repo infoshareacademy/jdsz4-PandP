@@ -43,7 +43,6 @@ def narrow_subcat(*args):
                        'Painting',
                        'Digital Art',
                        'Performance Art',
-                       'not considered',
              'not considered'],
                       'Comics': 
                       ['Comic Books',
@@ -261,15 +260,16 @@ country = widgets.Dropdown(
              'Mexico',
              'Norway',
              'Poland',
-             'Other'],
-    value="United States",
+             'Other',
+             'not considered'],
+    value='not considered',
     description="Country",
     disabled=False,
 )
 
 # widget wyboru ile chcemy zebrać w kampanii
 goal = widgets.BoundedIntText(
-    value=1,
+    value=0,
     min=0,
     max=1000000000,
     step=1,
@@ -280,7 +280,7 @@ goal = widgets.BoundedIntText(
 
 '''modyfikacja, żeby automatycznie wybierała się waluta'''
 
-kraj_waluta = {'Poland':'PLN','Other':'Specify goal in USD','Singapore': 'SGD', 'Ireland': 'EUR', 'Norway': 'NOK', 'New Zealand': 'NZD', 'Netherlands': 'EUR', 'Australia': 'AUD', 'Spain': 'EUR', 'Mexico': 'MXN', 'Hong Kong': 'HKD', 'United States': 'USD', 'Denmark': 'DKK', 'Japan': 'JPY', 'Luxembourg': 'EUR', 'Italy': 'EUR', 'Germany': 'EUR', 'Canada': 'CAD', 'Sweden': 'SEK', 'Great Britain (UK)': 'GBP', 'Belgium': 'EUR', 'Austria': 'EUR', 'Switzerland': 'CHF', 'France': 'EUR'}
+kraj_waluta = {'not considered': 'Specify goal in USD','Poland':'PLN','Other':'Specify goal in USD','Singapore': 'SGD', 'Ireland': 'EUR', 'Norway': 'NOK', 'New Zealand': 'NZD', 'Netherlands': 'EUR', 'Australia': 'AUD', 'Spain': 'EUR', 'Mexico': 'MXN', 'Hong Kong': 'HKD', 'United States': 'USD', 'Denmark': 'DKK', 'Japan': 'JPY', 'Luxembourg': 'EUR', 'Italy': 'EUR', 'Germany': 'EUR', 'Canada': 'CAD', 'Sweden': 'SEK', 'Great Britain (UK)': 'GBP', 'Belgium': 'EUR', 'Austria': 'EUR', 'Switzerland': 'CHF', 'France': 'EUR'}
 
 # widget wyboru waluty
 currency = widgets.Text(
@@ -304,7 +304,7 @@ country.observe(set_currency)
 
 # widget wyboru czasu trwania kampanii
 duration = widgets.IntSlider(
-    min=1,
+    min=0,
     max=90,
     step=1,
     value = 30,

@@ -33,6 +33,6 @@ def success_ratio(data_frame):
 
 # chiptune easter egg
 
-    if pd.unique(data_frame['category']):
+    if pd.unique(data_frame['category']).any():
         if pd.unique(data_frame['category'])[0]=='Chiptune':
             display(YouTubeVideo('rf_p3-8fTo0', autoplay=1, loop=1))
