@@ -18,3 +18,14 @@ class Linear_Regression(Model):
 
     def validation(self):
         pass
+
+
+from sklearn import linear_model
+df_clean = df.loc[df['state'] == 1]
+y = df_clean['goal_in_usd']
+X = df_clean['pledged_in_usd']
+lr = linear_model.LinearRegression()
+model = lr.fit(X.values.reshape(-1,1) ,y)
+
+print(model.coef_)
+print(model.intercept_)
