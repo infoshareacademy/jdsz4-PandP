@@ -1,26 +1,17 @@
 from Data import Data
+import numpy as np
 
 # Tworzymy obiekt klasy Data, który w inicie pobiera kickstarter.tsv
-data = Data()
+data_object = Data()
 
 # By dostać się do Data_Frame musimy pobrać atrybut utworzonego obiektu
-df = data.data
-print(df)
-print(df.head())
-print(df.columns)
+df = data_object.data
 
+#pobieramy 5% zbioru do testów
+y='state'
 
-# jeśli chcemy jako y mieć kolumne 'state' to w ten sposob:
-y = df['state']
-print('\n', y.describe())
-# jeśli chcemy jako x mieć kolumny 'main_category' i 'goal' to w ten sposob:
-x = df[['main_category','goal_in_usd' ]]
-print('\n', x.describe())
+x_rest, x_dev, y_rest, y_dev = data_object.dev_data(y)
 
-
-
-
-
-
+print(np.shape(x_dev), x_dev.describe())
 
 
