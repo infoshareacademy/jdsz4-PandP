@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="367e039c-1d7e-458c-acaa-8b2c83193a78" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_ml/data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/dev_df.py" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_ml/dev_df.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_ml/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/model_check.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/model_fitting.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/model_optimization.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/old_files/Analiza_Modeli/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/old_files/Analiza_Modeli/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/old_files/Analiza_Modeli/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/old_files/Analiza_Modeli/tmp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/old_files/App/hello.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/old_files/Moduly/Data.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/old_files/Moduly/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/old_files/Notebooks/hello.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_ml/old_files/__init__.py" beforeDir="false" />
-    </list>
+    <list default="true" id="367e039c-1d7e-458c-acaa-8b2c83193a78" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +136,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -164,9 +148,5 @@
     <MESSAGE value="attempting to clean up the files and folders" />
     <MESSAGE value="updating with __init__.py and way of importing our modules" />
     <option name="LAST_COMMIT_MESSAGE" value="updating with __init__.py and way of importing our modules" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/pandp_ml$dev_df.coverage" NAME="dev_df Coverage Results" MODIFIED="1583692500496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_ml" />
-    <SUITE FILE_PATH="coverage/pandp_ml$main.coverage" NAME="main Coverage Results" MODIFIED="1582836478053" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_ml" />
   </component>
 </project>
