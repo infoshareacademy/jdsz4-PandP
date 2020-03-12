@@ -18,6 +18,7 @@ def checkParamas():
     global main_chosen
     main_chosen = tmpCAT
     sample_label.configure(text = f'you chose main cat: {tmpCAT} , and country: {tmpCNTR}')
+    narrow_subcat(tmpCAT)
 
 
 def run_magic():
@@ -29,196 +30,199 @@ def run_magic():
 # (to jest ogólnie de facto tak, że tworzymy zmienne typu widget, które mają odpowiednie parametry)
 
 
-# def narrow_subcat(*args):
-#     sub_categories = {'Art':
-#                           ['Sculpture',
-#                            'Conceptual Art',
-#                            'Illustration',
-#                            'Public Art',
-#                            'Mixed Media',
-#                            'Video Art',
-#                            'Art',
-#                            'Installations',
-#                            'Ceramics',
-#                            'Textiles',
-#                            'Painting',
-#                            'Digital Art',
-#                            'Performance Art'],
-#                       'Comics':
-#                           ['Comic Books',
-#                            'Events',
-#                            'Anthologies',
-#                            'Graphic Novels',
-#                            'Comics',
-#                            'Webcomics'],
-#                       'Crafts':
-#                           ['Weaving',
-#                            'Letterpress',
-#                            'Crochet',
-#                            'Candles',
-#                            'Taxidermy',
-#                            'Crafts',
-#                            'Knitting',
-#                            'Embroidery',
-#                            'Pottery',
-#                            'Glass',
-#                            'Quilts',
-#                            'Printing',
-#                            'DIY',
-#                            'Stationery',
-#                            'Woodworking'],
-#                       'Dance':
-#                           ['Dance',
-#                            'Spaces',
-#                            'Residencies',
-#                            'Workshops',
-#                            'Performances'],
-#                       'Design':
-#                           ['Graphic Design',
-#                            'Product Design',
-#                            'Civic Design',
-#                            'Interactive Design',
-#                            'Architecture',
-#                            'Typography',
-#                            'Design'],
-#                       'Fashion':
-#                           ['Couture',
-#                            'Childrenswear',
-#                            'Footwear',
-#                            'Fashion',
-#                            'Accessories',
-#                            'Jewelry',
-#                            'Apparel',
-#                            'Ready-to-wear',
-#                            'Pet Fashion'],
-#                       'Film & Video':
-#                           ['Television',
-#                            'Horror',
-#                            'Film & Video',
-#                            'Science Fiction',
-#                            'Music Videos',
-#                            'Documentary',
-#                            'Family',
-#                            'Animation',
-#                            'Fantasy',
-#                            'Experimental',
-#                            'Movie Theaters',
-#                            'Comedy',
-#                            'Webseries',
-#                            'Festivals',
-#                            'Romance',
-#                            'Drama',
-#                            'Shorts',
-#                            'Narrative Film',
-#                            'Thrillers',
-#                            'Action'],
-#                       'Food':
-#                           ['Spaces',
-#                            'Vegan',
-#                            'Drinks',
-#                            'Restaurants',
-#                            'Food',
-#                            'Events',
-#                            'Farms',
-#                            'Cookbooks',
-#                            "Farmer's Markets",
-#                            'Food Trucks',
-#                            'Community Gardens',
-#                            'Small Batch',
-#                            'Bacon'],
-#                       'Games':
-#                           ['Playing Cards',
-#                            'Puzzles',
-#                            'Games',
-#                            'Mobile Games',
-#                            'Gaming Hardware',
-#                            'Video Games',
-#                            'Tabletop Games',
-#                            'Live Games'],
-#                       'Journalism':
-#                           ['Print',
-#                            'Video',
-#                            'Journalism',
-#                            'Web',
-#                            'Photo',
-#                            'Audio'],
-#                       'Music':
-#                           ['Classical Music',
-#                            'Faith',
-#                            'Chiptune',
-#                            'Blues',
-#                            'Indie Rock',
-#                            'Pop',
-#                            'Kids',
-#                            'Hip-Hop',
-#                            'World Music',
-#                            'Jazz',
-#                            'Latin',
-#                            'Metal',
-#                            'Comedy',
-#                            'Country & Folk',
-#                            'R&B',
-#                            'Rock',
-#                            'Music',
-#                            'Punk',
-#                            'Electronic Music'],
-#                       'Photography':
-#                           ['Photobooks',
-#                            'Animals',
-#                            'Places',
-#                            'Nature',
-#                            'People',
-#                            'Fine Art',
-#                            'Photography'],
-#                       'Publishing':
-#                           ['Radio & Podcasts',
-#                            'Art Books',
-#                            'Literary Journals',
-#                            'Poetry',
-#                            'Calendars',
-#                            'Comedy',
-#                            'Letterpress',
-#                            'Literary Spaces',
-#                            "Children's Books",
-#                            'Zines',
-#                            'Academic',
-#                            'Publishing',
-#                            'Anthologies',
-#                            'Periodicals',
-#                            'Nonfiction',
-#                            'Fiction',
-#                            'Translations',
-#                            'Young Adult'],
-#                       'Technology':
-#                           ['Technology',
-#                            'Wearables',
-#                            'Apps',
-#                            'Space Exploration',
-#                            'Sound',
-#                            'Gadgets',
-#                            'Software',
-#                            '3D Printing',
-#                            'Robots',
-#                            'DIY Electronics',
-#                            'Hardware',
-#                            'Web',
-#                            'Makerspaces',
-#                            'Camera Equipment',
-#                            'Flight',
-#                            'Fabrication Tools'
-#                            ],
-#                       'Theater':
-#                           ['Spaces',
-#                            'Comedy',
-#                            'Festivals',
-#                            'Experimental',
-#                            'Musical',
-#                            'Theater',
-#                            'Plays',
-#                            'Immersive'
-#                            }
-#
-#     sub_category.options = list(sub_categories[main_category.value])
+sub_categories = {'Art':
+                          ['Sculpture',
+                           'Conceptual Art',
+                           'Illustration',
+                           'Public Art',
+                           'Mixed Media',
+                           'Video Art',
+                           'Art',
+                           'Installations',
+                           'Ceramics',
+                           'Textiles',
+                           'Painting',
+                           'Digital Art',
+                           'Performance Art'],
+                      'Comics':
+                          ['Comic Books',
+                           'Events',
+                           'Anthologies',
+                           'Graphic Novels',
+                           'Comics',
+                           'Webcomics'],
+                      'Crafts':
+                          ['Weaving',
+                           'Letterpress',
+                           'Crochet',
+                           'Candles',
+                           'Taxidermy',
+                           'Crafts',
+                           'Knitting',
+                           'Embroidery',
+                           'Pottery',
+                           'Glass',
+                           'Quilts',
+                           'Printing',
+                           'DIY',
+                           'Stationery',
+                           'Woodworking'],
+                      'Dance':
+                          ['Dance',
+                           'Spaces',
+                           'Residencies',
+                           'Workshops',
+                           'Performances'],
+                      'Design':
+                          ['Graphic Design',
+                           'Product Design',
+                           'Civic Design',
+                           'Interactive Design',
+                           'Architecture',
+                           'Typography',
+                           'Design'],
+                      'Fashion':
+                          ['Couture',
+                           'Childrenswear',
+                           'Footwear',
+                           'Fashion',
+                           'Accessories',
+                           'Jewelry',
+                           'Apparel',
+                           'Ready-to-wear',
+                           'Pet Fashion'],
+                      'Film & Video':
+                          ['Television',
+                           'Horror',
+                           'Film & Video',
+                           'Science Fiction',
+                           'Music Videos',
+                           'Documentary',
+                           'Family',
+                           'Animation',
+                           'Fantasy',
+                           'Experimental',
+                           'Movie Theaters',
+                           'Comedy',
+                           'Webseries',
+                           'Festivals',
+                           'Romance',
+                           'Drama',
+                           'Shorts',
+                           'Narrative Film',
+                           'Thrillers',
+                           'Action'],
+                      'Food':
+                          ['Spaces',
+                           'Vegan',
+                           'Drinks',
+                           'Restaurants',
+                           'Food',
+                           'Events',
+                           'Farms',
+                           'Cookbooks',
+                           "Farmer's Markets",
+                           'Food Trucks',
+                           'Community Gardens',
+                           'Small Batch',
+                           'Bacon'],
+                      'Games':
+                          ['Playing Cards',
+                           'Puzzles',
+                           'Games',
+                           'Mobile Games',
+                           'Gaming Hardware',
+                           'Video Games',
+                           'Tabletop Games',
+                           'Live Games'],
+                      'Journalism':
+                          ['Print',
+                           'Video',
+                           'Journalism',
+                           'Web',
+                           'Photo',
+                           'Audio'],
+                      'Music':
+                          ['Classical Music',
+                           'Faith',
+                           'Chiptune',
+                           'Blues',
+                           'Indie Rock',
+                           'Pop',
+                           'Kids',
+                           'Hip-Hop',
+                           'World Music',
+                           'Jazz',
+                           'Latin',
+                           'Metal',
+                           'Comedy',
+                           'Country & Folk',
+                           'R&B',
+                           'Rock',
+                           'Music',
+                           'Punk',
+                           'Electronic Music'],
+                      'Photography':
+                          ['Photobooks',
+                           'Animals',
+                           'Places',
+                           'Nature',
+                           'People',
+                           'Fine Art',
+                           'Photography'],
+                      'Publishing':
+                          ['Radio & Podcasts',
+                           'Art Books',
+                           'Literary Journals',
+                           'Poetry',
+                           'Calendars',
+                           'Comedy',
+                           'Letterpress',
+                           'Literary Spaces',
+                           "Children's Books",
+                           'Zines',
+                           'Academic',
+                           'Publishing',
+                           'Anthologies',
+                           'Periodicals',
+                           'Nonfiction',
+                           'Fiction',
+                           'Translations',
+                           'Young Adult'],
+                      'Technology':
+                          ['Technology',
+                           'Wearables',
+                           'Apps',
+                           'Space Exploration',
+                           'Sound',
+                           'Gadgets',
+                           'Software',
+                           '3D Printing',
+                           'Robots',
+                           'DIY Electronics',
+                           'Hardware',
+                           'Web',
+                           'Makerspaces',
+                           'Camera Equipment',
+                           'Flight',
+                           'Fabrication Tools'
+                           ],
+                      'Theater':
+                          ['Spaces',
+                           'Comedy',
+                           'Festivals',
+                           'Experimental',
+                           'Musical',
+                           'Theater',
+                           'Plays',
+                           'Immersive'],
+                      '':
+                          ['choose main category first']
+                           }
+
+def narrow_subcat(maincat):
+
+    subcatMenu.values = list(sub_categories[maincat])
 
 
 
@@ -248,7 +252,6 @@ root.set_theme("plastik")
 # ***** The Toolbar *****
 
 toolbar = ttk.Frame(root)
-#toolbar.grid(row = 0, column = 0, columnspan = cols, sticky = N)
 toolbar.pack(side = TOP)
 
 
@@ -271,13 +274,15 @@ quitButt.pack(side=RIGHT, padx=10, pady=10)
 
 menuFrame = Frame(root)
 menuFrame.configure(padx = 30,pady = 30)
-#menuFrame.grid(row = 1, column = 0)
+
+
 menuFrame.pack(side = TOP)
 
 
 
 #** Main Category selector *****
 
+catMenuFrame = Frame(menuFrame, padx = 2, pady = 2)
 
 mcats = ['Art',
              'Fashion',
@@ -294,17 +299,32 @@ mcats = ['Art',
              'Technology',
              'Theater',
              'Games']
-catMenu = ttk.Combobox(menuFrame, values = mcats)
-catMenu.pack(side = TOP)
 
+catMenuLabel = ttk.Label(catMenuFrame, text = 'Choose Main Category    ', anchor = N )
+catMenuLabel.pack(side = LEFT)
+
+catMenu = ttk.Combobox(catMenuFrame, values = mcats)
+catMenu.pack(side = LEFT)
+
+catMenuFrame.pack(side = TOP)
 
 # ** Sub Category selector *****
 
-subcatMenu = ttk.Combobox(menuFrame, values = mcats)
-subcatMenu.pack(side = TOP)
+subcatMenuFrame = Frame(menuFrame, padx = 2, pady = 2)
+
+
+subcatMenuLabel = ttk.Label(subcatMenuFrame, text = 'Choose Sub-Category     ' )
+subcatMenuLabel.pack(side = LEFT)
+
+subcatMenu = ttk.Combobox(subcatMenuFrame, values = sub_categories[main_chosen])
+subcatMenu.pack(side = LEFT)
+
+subcatMenuFrame.pack(side = TOP)
 
 
 # ** Country selector *****
+countryMenuFrame = Frame(menuFrame, padx = 2, pady = 2)
+
 
 country_list = [ 'Australia',
                 'Austria',
@@ -329,22 +349,27 @@ country_list = [ 'Australia',
                 'Mexico',
                 'Norway']
 
-countryMenu = ttk.Combobox(menuFrame, values = country_list)
-countryMenu.pack(side = TOP)
+countryMenuLabel = ttk.Label(countryMenuFrame, text = 'Choose Country          ' )
+countryMenuLabel.pack(side = LEFT)
+
+countryMenu = ttk.Combobox(countryMenuFrame, values = country_list)
+countryMenu.pack(side = LEFT)
+
+countryMenuFrame.pack(side = TOP)
+
 
 
 # ***** Main Window showing result *****
 
 
-mainFrame1 = ttk.Frame(root)
+mainFrame1 = Frame(root)
 mainFrame1.pack(side = TOP)
-#mainFrame1.grid(row =1, column = 1)
 
 
 
 sample_label = ttk.Label(mainFrame1, text = 'choose main cat')
-#label1.grid(row = 1, column = 1)
-sample_label.pack(side = TOP, fill = BOTH)
+
+sample_label.pack(side = TOP, anchor = CENTER, fill = BOTH)
 
 
 
