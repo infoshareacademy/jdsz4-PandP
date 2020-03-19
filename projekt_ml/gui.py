@@ -5,6 +5,11 @@ from ttkthemes import themed_tk as tk
 import tkinter.messagebox
 
 
+
+
+
+version = 'v0.02'
+
 ####### pomocnicze zmienne listy itp #####################
 
 
@@ -37,12 +42,12 @@ def checkParamas():
     localGOAL = round(float(tmpGOAL)/kursy_walut[localCURR],1)
     global main_chosen
     main_chosen = tmpCAT
-    paramInfolabel.configure(text = f"Your Campaign's main category: {tmpCAT}\n "
+    paramInfolabel.configure(text = f"Your Campaign's main category: {tmpCAT}\n"
                                     f"Your Campaing's sub category : {tmpSUBCAT}\n"
                                     f"Your Campaign's launch country: {tmpCNTR}\n"
                                     f"Your Campaign's goal is {tmpGOAL} USD ({localGOAL} in {localCURR} ).")
 
-#pomocnicza funkcja sprawdzająca czy została zapisana wartość globalnej zmiennej main_chosen
+#pomocnicza funkcja sprawdzająca (w konsoli) czy została zapisana wartość globalnej zmiennej main_chosen
 def run_magic():
     print(main_chosen)
 
@@ -277,7 +282,7 @@ ramek może być wiele poziomów, sam stosuje poniżej "ramki w większych ramka
 
 root = tk.ThemedTk()
 root.geometry('1000x600')
-root.set_theme("plastik")
+root.set_theme("clearlooks")
 
 
 
@@ -292,11 +297,11 @@ toolbar.pack(side = TOP)
 #### w dalszej części na podobnej zasadzie są zdefiniowane i "upakowane" pozostałe elementy interfejsu
 
 # *** toolbar buttons *****
-insertButt = ttk.Button(toolbar, text="check main category", command=checkParamas)
+insertButt = ttk.Button(toolbar, text="Check main category", command=checkParamas)
 insertButt.pack(side=LEFT, padx=10, pady=10)
-printButt = ttk.Button(toolbar, text="Print", command=run_magic)
+printButt = ttk.Button(toolbar, text="Print in console", command=run_magic)
 printButt.pack(side=LEFT, padx=10, pady=10)
-quitButt = ttk.Button(toolbar, text="quit", command=root.quit)
+quitButt = ttk.Button(toolbar, text="Quit", command=root.quit)
 quitButt.pack(side=RIGHT, padx=10, pady=10)
 
 
@@ -310,13 +315,13 @@ quitButt.pack(side=RIGHT, padx=10, pady=10)
 
 
 menuFrame = Frame(root)
-menuFrame.configure(padx = 30,pady = 30)
+menuFrame.configure(padx = 30,pady = 10)
 
 
 menuFrame.pack(side = TOP)
 
-MenusLabel1 = ttk.Label(menuFrame, text = 'Please specify campaign parameters    ', anchor = CENTER )
-MenusLabel1.pack(side = TOP)
+MenusLabel1 = ttk.Label(menuFrame, text = 'Please specify campaign parameters', anchor = CENTER, font = ('Helvetica', 20, 'bold') )
+MenusLabel1.pack(side = TOP, pady = 20)
 
 
 #** Main Category selector *****
@@ -339,10 +344,11 @@ mcats = ['Art',
              'Theater',
              'Games']
 
-catMenuLabel = ttk.Label(catMenuFrame, text = 'Choose main category    ', anchor = N )
+catMenuLabel = ttk.Label(catMenuFrame, text = 'Choose Main Category    ', anchor = N )
 catMenuLabel.pack(side = LEFT)
 
 catMenu = ttk.Combobox(catMenuFrame, values = mcats)
+#poniżej odpalenie funkcji, która zawęża podkategorie na podstawie wybranej głównej kategorii
 catMenu.bind('<<ComboboxSelected>>', narrow_subcat )
 catMenu.pack(side = LEFT)
 
@@ -398,7 +404,6 @@ countryMenu.pack(side = LEFT)
 countryMenuFrame.pack(side = TOP)
 
 
-############# nad tym aktualnie pracuję, żeby był ładny slider połączony z okiekiem do wpisywania
 
 # ** Goal selector *****
 goalMenuFrame = Frame(menuFrame, padx = 2, pady = 2)
@@ -407,27 +412,45 @@ goalMenuFrame = Frame(menuFrame, padx = 2, pady = 2)
 goalMenuLabel = ttk.Label(goalMenuFrame, text = 'Set Goal in USD         ' )
 goalMenuLabel.pack(side = LEFT)
 
-#goalSlider = ttk.Scrollbar(goalMenuFrame, orient = HORIZONTAL)
-goalSpinbox = ttk.Spinbox(goalMenuFrame, from_ = 1, to = 20000000, command = checkParamas)
+min_goal = 1
+max_goal = 20000000
+
+
+goalSpinbox = ttk.Spinbox(goalMenuFrame, from_ = min_goal, to = max_goal, command = checkParamas)
 goalButton = Button(goalMenuFrame, text="OK", command=checkParamas)
 
 
 
-#goalSlider.configure(command = goalSpinbox.set)
 
 goalSpinbox.pack(side = LEFT)
-#goalSlider.pack(side = BOTTOM, fill = X)
-goalButton.pack(side = LEFT)
 
-goalMenuFrame.pack(side = LEFT)
+goalButton.pack(side = LEFT, padx = 5)
 
+
+goalMenuFrame.pack(side = TOP)
+
+
+# slider poniżej
+
+
+#przyznam, że w sumie średnio mi się ten slider podoba, do przegadania czy go nie wywalić
+
+sliderFrame = Frame(menuFrame, padx = 2, pady = 2)
+
+goalSlider = Scale(sliderFrame, orient = HORIZONTAL, showvalue = 0, from_ = min_goal, to = max_goal, length = 300, variable = IntVar )
+goalSlider.configure(command = goalSpinbox.set)
+goalSlider.pack(side = TOP, padx = 0, fill = X )
+
+
+
+sliderFrame.pack(side = TOP)
 
 
 # ***** Main Window showing result *****
 
 
 mainFrame1 = Frame(root)
-mainFrame1.pack(side = TOP)
+mainFrame1.pack(side = TOP, pady = 40)
 
 
 
@@ -439,10 +462,10 @@ paramInfolabel.pack(side = TOP, anchor = CENTER, fill = BOTH)
 
 # ***** Status Bar *****
 
-status = ttk.Label(root, text="PandP, ML_project, v0.01", relief=GROOVE, anchor=W)
+status = ttk.Label(root, text=f"PandP, ML_project, {version}", relief=GROOVE, anchor=W)
 
 status.pack(side=BOTTOM, fill=X)
 
 
-# "włączenie" programu, interfesj musi się zawierać pomiędzy "otwarciem" roota i jego "mainloop'em", trochę jak w html'u
+# "włączenie" programu, interfejs musi się zawierać pomiędzy "otwarciem" roota i jego "mainloop'em", trochę jak w html'u
 root.mainloop()
