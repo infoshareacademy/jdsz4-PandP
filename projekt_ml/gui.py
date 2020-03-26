@@ -1,14 +1,26 @@
 from tkinter import *
 from tkinter import ttk
 from ttkthemes import themed_tk as tk
+from sklearn import preprocessing
 
+import pickle
+import numpy as np
+import pandas as pd
 import tkinter.messagebox
 
 
 
+with open("Analiza_Modeli/model.pickle", 'rb') as file:
+    trained_model = pickle.load(file)
 
+trained_model
 
-version = 'v0.02'
+with open("encoders.pickle", 'rb') as file2:
+    encoders = pickle.load(file2)
+
+encoders
+
+version = 'v0.03'
 
 ####### pomocnicze zmienne listy itp #####################
 
@@ -17,8 +29,12 @@ kursy_walut = {'SGD': 0.7218272535233189, 'EUR': 1.1238612937944434, 'DKK': 0.14
 
 kraj_waluta = {'not considered': 'Specify goal in USD','Poland':'PLN','Other':'Specify goal in USD','Singapore': 'SGD', 'Ireland': 'EUR', 'Norway': 'NOK', 'New Zealand': 'NZD', 'Netherlands': 'EUR', 'Australia': 'AUD', 'Spain': 'EUR', 'Mexico': 'MXN', 'Hong Kong': 'HKD', 'United States': 'USD', 'Denmark': 'DKK', 'Japan': 'JPY', 'Luxembourg': 'EUR', 'Italy': 'EUR', 'Germany': 'EUR', 'Canada': 'CAD', 'Sweden': 'SEK', 'Great Britain (UK)': 'GBP', 'Belgium': 'EUR', 'Austria': 'EUR', 'Switzerland': 'CHF', 'France': 'EUR'}
 
-main_chosen = ''
-
+chosen_main_cat = ''
+chosen_country = ''
+chosen_subcat = ''
+chosen_currency = ''
+chosen_goal = ''
+chosen_main_cat_cat = ''
 
 
 
@@ -38,19 +54,56 @@ def checkParamas():
     tmpCNTR = countryMenu.get()
     tmpSUBCAT = subcatMenu.get()
     tmpGOAL = goalSpinbox.get()
-    localCURR = kraj_waluta[tmpCNTR]
-    localGOAL = round(float(tmpGOAL)/kursy_walut[localCURR],1)
-    global main_chosen
-    main_chosen = tmpCAT
-    paramInfolabel.configure(text = f"Your Campaign's main category: {tmpCAT}\n"
-                                    f"Your Campaing's sub category : {tmpSUBCAT}\n"
-                                    f"Your Campaign's launch country: {tmpCNTR}\n"
-                                    f"Your Campaign's goal is {tmpGOAL} USD ({localGOAL} in {localCURR} ).")
+
+    global chosen_main_cat
+    chosen_main_cat = tmpCAT
+
+    global chosen_country
+    chosen_country = tmpCNTR
+
+    global chosen_subcat
+    chosen_subcat = tmpSUBCAT
+
+    global chosen_goal
+    chosen_goal = tmpGOAL
+
+    global  chosen_main_cat_cat
+    chosen_main_cat_cat = f"{chosen_main_cat}>{chosen_subcat}"
+
+    if tmpCAT != '' and tmpCNTR != '' and tmpSUBCAT != '' and tmpGOAL != '':
+        localCURR = kraj_waluta[tmpCNTR]
+        global chosen_currency
+        chosen_currency = localCURR
+        localGOAL = round(float(tmpGOAL) / kursy_walut[localCURR], 1)
+        paramInfolabel.configure(text = f"Your Campaign's main category: {tmpCAT}\n"
+                                        f"Your Campaing's sub category : {tmpSUBCAT}\n"
+                                        f"Your Campaign's launch country: {tmpCNTR}\n"
+                                        f"Your Campaign's goal is {tmpGOAL} USD ({localGOAL} in {localCURR} ).\n"
+                                        f"All parameters selected. Check your chances... press TEST")
+    else:
+        paramInfolabel.configure(text=f"Not all parameters selected!")
+
 
 #pomocnicza funkcja sprawdzająca (w konsoli) czy została zapisana wartość globalnej zmiennej main_chosen
 def run_magic():
-    print(main_chosen)
+    print(chosen_main_cat)
 
+
+#kodowanie podanych danych
+def input_encode():
+    global enc_main_cat_cat
+    enc_main_cat_cat = encoders['main_cat_cat'].transform([chosen_main_cat_cat])
+    global enc_country
+    enc_country = encoders['country'].transform([chosen_country])
+    global enc_currency
+    enc_currency = encoders['currency'].transform([chosen_currency])
+
+
+def predict_pledged():
+    input_encode()
+    data = pd.DataFrame(data = {'main_cat_cat': enc_main_cat_cat, 'country':enc_country,  'currency': enc_currency, 'goal_in_usd': float(chosen_goal)})
+    preds = trained_model.predict(data)
+    resultlabel.configure(text=f"You should go for: {preds.round()}$")
 
 
 ######### lista podkategorii do wyboru dla poszczególnych wybrbanych main_category
@@ -255,17 +308,14 @@ def narrow_subcat(event):
 
 
 
-
-
-
 ################### definicja interfesju ############
 '''
 Tkinter opiera się o "ramki" - frames, w których upakowuje się poszczególne fragmentu interfejsu:
 - przyciski
 - pola tekstowe
 - menu wybieralne
-- slidery 
-- okienka inputu 
+- slidery
+- okienka inputu
 i pewnie jeszce wiele innych
 
 ramek może być wiele poziomów, sam stosuje poniżej "ramki w większych ramkach"
@@ -299,8 +349,10 @@ toolbar.pack(side = TOP)
 # *** toolbar buttons *****
 insertButt = ttk.Button(toolbar, text="Check main category", command=checkParamas)
 insertButt.pack(side=LEFT, padx=10, pady=10)
-printButt = ttk.Button(toolbar, text="Print in console", command=run_magic)
-printButt.pack(side=LEFT, padx=10, pady=10)
+
+testButt = ttk.Button(toolbar, text="TEST BUTTON", command=predict_pledged)
+testButt.pack(side=LEFT, padx=10, pady=10)
+
 quitButt = ttk.Button(toolbar, text="Quit", command=root.quit)
 quitButt.pack(side=RIGHT, padx=10, pady=10)
 
@@ -362,7 +414,7 @@ subcatMenuFrame = Frame(menuFrame, padx = 2, pady = 2)
 subcatMenuLabel = ttk.Label(subcatMenuFrame, text = 'Choose Sub-Category     ' )
 subcatMenuLabel.pack(side = LEFT)
 
-subcatMenu = ttk.Combobox(subcatMenuFrame, values = sub_categories[main_chosen])
+subcatMenu = ttk.Combobox(subcatMenuFrame, values = sub_categories[chosen_main_cat])
 subcatMenu.pack(side = LEFT)
 
 subcatMenuFrame.pack(side = TOP)
@@ -454,9 +506,14 @@ mainFrame1.pack(side = TOP, pady = 40)
 
 
 
-paramInfolabel = ttk.Label(mainFrame1, text = 'choose main cat')
+paramInfolabel = ttk.Label(mainFrame1, text = 'choose campaign parameters')
 
 paramInfolabel.pack(side = TOP, anchor = CENTER, fill = BOTH)
+
+
+resultlabel = ttk.Label(mainFrame1, text = '')
+
+resultlabel.pack(side = TOP, anchor = CENTER, fill = BOTH, pady = 20)
 
 
 
@@ -469,3 +526,5 @@ status.pack(side=BOTTOM, fill=X)
 
 # "włączenie" programu, interfejs musi się zawierać pomiędzy "otwarciem" roota i jego "mainloop'em", trochę jak w html'u
 root.mainloop()
+
+
