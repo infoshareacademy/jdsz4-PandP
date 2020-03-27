@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import ttk
 from ttkthemes import themed_tk as tk
 from sklearn import preprocessing
+import xgboost as xgb
+
 
 import pickle
 import numpy as np
@@ -10,7 +12,7 @@ import tkinter.messagebox
 
 
 
-with open("Analiza_Modeli/model.pickle", 'rb') as file:
+with open("Analiza_Modeli/model3.pickle", 'rb') as file:
     trained_model = pickle.load(file)
 
 trained_model
@@ -20,7 +22,7 @@ with open("encoders.pickle", 'rb') as file2:
 
 encoders
 
-version = 'v0.03'
+version = 'v0.04'
 
 ####### pomocnicze zmienne listy itp #####################
 
@@ -35,6 +37,7 @@ chosen_subcat = ''
 chosen_currency = ''
 chosen_goal = ''
 chosen_main_cat_cat = ''
+chosen_duration = ''
 
 
 
@@ -54,9 +57,13 @@ def checkParamas():
     tmpCNTR = countryMenu.get()
     tmpSUBCAT = subcatMenu.get()
     tmpGOAL = goalSpinbox.get()
+    tmpDUR = durationSpinbox.get()
 
     global chosen_main_cat
     chosen_main_cat = tmpCAT
+
+    global chosen_duration
+    chosen_duration = tmpDUR
 
     global chosen_country
     chosen_country = tmpCNTR
@@ -70,7 +77,7 @@ def checkParamas():
     global  chosen_main_cat_cat
     chosen_main_cat_cat = f"{chosen_main_cat}>{chosen_subcat}"
 
-    if tmpCAT != '' and tmpCNTR != '' and tmpSUBCAT != '' and tmpGOAL != '':
+    if tmpCAT != '' and tmpCNTR != '' and tmpSUBCAT != '' and tmpGOAL != '' and tmpDUR != '':
         localCURR = kraj_waluta[tmpCNTR]
         global chosen_currency
         chosen_currency = localCURR
@@ -78,6 +85,7 @@ def checkParamas():
         paramInfolabel.configure(text = f"Your Campaign's main category: {tmpCAT}\n"
                                         f"Your Campaing's sub category : {tmpSUBCAT}\n"
                                         f"Your Campaign's launch country: {tmpCNTR}\n"
+                                        f"Your Campaign's duration: {tmpDUR}\n"
                                         f"Your Campaign's goal is {tmpGOAL} USD ({localGOAL} in {localCURR} ).\n"
                                         f"All parameters selected. Check your chances... press TEST")
     else:
@@ -101,8 +109,10 @@ def input_encode():
 
 def predict_pledged():
     input_encode()
-    data = pd.DataFrame(data = {'main_cat_cat': enc_main_cat_cat, 'country':enc_country,  'currency': enc_currency, 'goal_in_usd': float(chosen_goal)})
-    preds = trained_model.predict(data)
+    data = pd.DataFrame(data = {'main_cat_cat': enc_main_cat_cat, 'country':enc_country, 'duration' : float(chosen_duration), 'currency': enc_currency, 'goal_in_usd': float(chosen_goal)})
+    dm_test = xgb.DMatrix(data)
+
+    preds = trained_model.predict(dm_test)
     resultlabel.configure(text=f"You should go for: {preds.round()}$")
 
 
@@ -496,6 +506,31 @@ goalSlider.pack(side = TOP, padx = 0, fill = X )
 
 
 sliderFrame.pack(side = TOP)
+
+
+# ** Duration selector *****
+durationMenuFrame = Frame(menuFrame, padx = 2, pady = 2)
+
+
+durationMenuLabel = ttk.Label(durationMenuFrame, text = 'Choose cmpaign duration ' )
+durationMenuLabel.pack(side = LEFT)
+
+min_dur = 1
+max_dur = 90
+
+
+durationSpinbox = ttk.Spinbox(durationMenuFrame, from_ = min_goal, to = max_goal, value = 30, command = checkParamas)
+durationButton = Button(durationMenuFrame, text="OK", command=checkParamas)
+
+durationSpinbox.pack(side = LEFT)
+
+durationButton.pack(side = LEFT, padx = 5)
+
+
+durationMenuFrame.pack(side = TOP)
+
+
+
 
 
 # ***** Main Window showing result *****
