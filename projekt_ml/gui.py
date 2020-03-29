@@ -12,17 +12,21 @@ import tkinter.messagebox
 
 
 
-with open("Analiza_Modeli/model3.pickle", 'rb') as file:
-    trained_model = pickle.load(file)
+with open("Analiza_Modeli/model_reg.pickle", 'rb') as file:
+    trained_regmodel = pickle.load(file)
 
-trained_model
+with open("Analiza_Modeli/model_class.pickle", 'rb') as file:
+    trained_classmodel = pickle.load(file)
+
+trained_regmodel
+trained_classmodel
 
 with open("encoders.pickle", 'rb') as file2:
     encoders = pickle.load(file2)
 
 encoders
 
-version = 'v0.04'
+version = 'v0.10'
 
 ####### pomocnicze zmienne listy itp #####################
 
@@ -35,9 +39,10 @@ chosen_main_cat = ''
 chosen_country = ''
 chosen_subcat = ''
 chosen_currency = ''
+
 chosen_goal = ''
 chosen_main_cat_cat = ''
-chosen_duration = ''
+chosen_duration = 30
 
 
 
@@ -110,10 +115,23 @@ def input_encode():
 def predict_pledged():
     input_encode()
     data = pd.DataFrame(data = {'main_cat_cat': enc_main_cat_cat, 'country':enc_country, 'duration' : float(chosen_duration), 'currency': enc_currency, 'goal_in_usd': float(chosen_goal)})
-    dm_test = xgb.DMatrix(data)
 
-    preds = trained_model.predict(dm_test)
-    resultlabel.configure(text=f"You should go for: {preds.round()}$")
+    preds = trained_regmodel.predict(data)
+    pred_succes = trained_classmodel.predict(data)
+    if pred_succes.mean() == 1 and preds.mean() > int(chosen_goal):
+        resultlabel.configure(text=f"Propably you WILL SUCCED !! \n"
+                                   f"You may have a chance to reach even higher GOAL : {preds.mean().round()}$!")
+    elif pred_succes.mean() == 1 and preds.mean() < int(chosen_goal):
+        resultlabel.configure(text=f"Propably you WILL SUCCED !! \n"
+                                   f"The GOAL you've chosen looks JUST OK!")
+
+    elif pred_succes.mean() == 0 and preds.mean() < int(chosen_goal) and preds.mean() > 0:
+        resultlabel.configure(text=f"Propably you WILL LOOSE $$$. \n"
+                                   f"You may have a chance to collect around : {preds.mean().round()}$.")
+
+    else:
+        resultlabel.configure(text=f"Propably you WILL LOOSE money. \n"
+                                   f"For your campaign, we CANNOT suggest a reasonable GOAL.")
 
 
 ######### lista podkategorii do wyboru dla poszczególnych wybrbanych main_category
@@ -357,10 +375,10 @@ toolbar.pack(side = TOP)
 #### w dalszej części na podobnej zasadzie są zdefiniowane i "upakowane" pozostałe elementy interfejsu
 
 # *** toolbar buttons *****
-insertButt = ttk.Button(toolbar, text="Check main category", command=checkParamas)
+insertButt = ttk.Button(toolbar, text="UPDATE PARAMETERS", command=checkParamas)
 insertButt.pack(side=LEFT, padx=10, pady=10)
 
-testButt = ttk.Button(toolbar, text="TEST BUTTON", command=predict_pledged)
+testButt = ttk.Button(toolbar, text="EVALUATE CAMAPIGN", command=predict_pledged)
 testButt.pack(side=LEFT, padx=10, pady=10)
 
 quitButt = ttk.Button(toolbar, text="Quit", command=root.quit)
@@ -382,7 +400,7 @@ menuFrame.configure(padx = 30,pady = 10)
 
 menuFrame.pack(side = TOP)
 
-MenusLabel1 = ttk.Label(menuFrame, text = 'Please specify campaign parameters', anchor = CENTER, font = ('Helvetica', 20, 'bold') )
+MenusLabel1 = ttk.Label(menuFrame, text = 'Please specify campaign parameters',font = ('Helvetica', 20, 'bold'), anchor = CENTER )
 MenusLabel1.pack(side = TOP, pady = 20)
 
 
@@ -475,12 +493,11 @@ goalMenuLabel = ttk.Label(goalMenuFrame, text = 'Set Goal in USD         ' )
 goalMenuLabel.pack(side = LEFT)
 
 min_goal = 1
-max_goal = 20000000
+max_goal = 1000000
 
 
-goalSpinbox = ttk.Spinbox(goalMenuFrame, from_ = min_goal, to = max_goal, command = checkParamas)
+goalSpinbox = ttk.Spinbox(goalMenuFrame, from_ = min_goal, to = max_goal, increment=50, command = checkParamas)
 goalButton = Button(goalMenuFrame, text="OK", command=checkParamas)
-
 
 
 
@@ -505,31 +522,56 @@ goalSlider.pack(side = TOP, padx = 0, fill = X )
 
 
 
-sliderFrame.pack(side = TOP)
+########### SLIDER GOAL WYŁĄCZONY PONIŻEJ
+
+
+#sliderFrame.pack(side = TOP)
 
 
 # ** Duration selector *****
 durationMenuFrame = Frame(menuFrame, padx = 2, pady = 2)
 
 
-durationMenuLabel = ttk.Label(durationMenuFrame, text = 'Choose cmpaign duration ' )
+durationMenuLabel = ttk.Label(durationMenuFrame, text = 'Choose campaign duration ' )
 durationMenuLabel.pack(side = LEFT)
 
 min_dur = 1
 max_dur = 90
 
 
-durationSpinbox = ttk.Spinbox(durationMenuFrame, from_ = min_goal, to = max_goal, value = 30, command = checkParamas)
+durationSpinbox = ttk.Spinbox(durationMenuFrame, from_ = min_dur, to = max_dur, increment = 1, command=checkParamas)
 durationButton = Button(durationMenuFrame, text="OK", command=checkParamas)
 
-durationSpinbox.pack(side = LEFT)
 
-durationButton.pack(side = LEFT, padx = 5)
+#durationSpinbox.pack(side = LEFT)
+
+#durationButton.pack(side = LEFT, padx = 5)
+
+def dur_slider_contr(event):
+    durationSpinbox.set(event)
+    checkParamas()
+
+durSlider = Scale(durationMenuFrame, orient = HORIZONTAL, showvalue = 1, from_ = min_dur, to = max_dur, length = 300, variable = IntVar )
+durSlider.set(30)
+
+durSlider.configure(command = dur_slider_contr)
+durSlider.pack(side = LEFT, padx = 5, fill = X )
 
 
 durationMenuFrame.pack(side = TOP)
 
 
+# ### SLIDER DLA DURATION
+#
+# slider2Frame = Frame(menuFrame, padx = 2, pady = 2)
+#
+#
+#
+#
+#
+#
+#
+# slider2Frame.pack(side = TOP)
 
 
 
@@ -541,12 +583,12 @@ mainFrame1.pack(side = TOP, pady = 40)
 
 
 
-paramInfolabel = ttk.Label(mainFrame1, text = 'choose campaign parameters')
+paramInfolabel = ttk.Label(mainFrame1, text = 'choose campaign parameters',font = ('Helvetica', 12, 'bold'))
 
 paramInfolabel.pack(side = TOP, anchor = CENTER, fill = BOTH)
 
 
-resultlabel = ttk.Label(mainFrame1, text = '')
+resultlabel = ttk.Label(mainFrame1, text = '', font = ('Helvetica', 14, 'bold'))
 
 resultlabel.pack(side = TOP, anchor = CENTER, fill = BOTH, pady = 20)
 
@@ -557,6 +599,13 @@ resultlabel.pack(side = TOP, anchor = CENTER, fill = BOTH, pady = 20)
 status = ttk.Label(root, text=f"PandP, ML_project, {version}", relief=GROOVE, anchor=W)
 
 status.pack(side=BOTTOM, fill=X)
+
+
+durationSpinbox.set(30)
+
+checkParamas()
+
+
 
 
 # "włączenie" programu, interfejs musi się zawierać pomiędzy "otwarciem" roota i jego "mainloop'em", trochę jak w html'u
