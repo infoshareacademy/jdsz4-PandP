@@ -26,7 +26,7 @@ with open("encoders.pickle", 'rb') as file2:
 
 encoders
 
-version = 'v0.10'
+version = 'v0.101'
 
 ####### pomocnicze zmienne listy itp #####################
 
@@ -583,12 +583,12 @@ mainFrame1.pack(side = TOP, pady = 40)
 
 
 
-paramInfolabel = ttk.Label(mainFrame1, text = 'choose campaign parameters',font = ('Helvetica', 12, 'bold'))
+paramInfolabel = ttk.Label(mainFrame1, text = 'choose campaign parameters',font = ('Times', 11, 'bold'))
 
 paramInfolabel.pack(side = TOP, anchor = CENTER, fill = BOTH)
 
 
-resultlabel = ttk.Label(mainFrame1, text = '', font = ('Helvetica', 14, 'bold'))
+resultlabel = ttk.Label(mainFrame1, text = '', font = ('Times', 15, 'bold'))
 
 resultlabel.pack(side = TOP, anchor = CENTER, fill = BOTH, pady = 20)
 
