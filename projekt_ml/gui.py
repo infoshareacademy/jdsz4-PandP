@@ -26,7 +26,7 @@ with open("encoders.pickle", 'rb') as file2:
 
 encoders
 
-version = 'v0.101'
+version = 'v0.102'
 
 ####### pomocnicze zmienne listy itp #####################
 
@@ -92,7 +92,7 @@ def checkParamas():
                                         f"Your Campaign's launch country: {tmpCNTR}\n"
                                         f"Your Campaign's duration: {tmpDUR}\n"
                                         f"Your Campaign's goal is {tmpGOAL} USD ({localGOAL} in {localCURR} ).\n"
-                                        f"All parameters selected. Check your chances... press TEST")
+                                        f"All parameters selected. Check your chances... EVALUATE CAMPAIGN")
     else:
         paramInfolabel.configure(text=f"Not all parameters selected!")
 
