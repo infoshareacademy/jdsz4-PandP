@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import ttk
 from ttkthemes import themed_tk as tk
+from PIL import Image, ImageTk
+
 from sklearn import preprocessing
 import xgboost as xgb
 
@@ -9,6 +11,7 @@ import pickle
 import numpy as np
 import pandas as pd
 import tkinter.messagebox
+
 
 
 
