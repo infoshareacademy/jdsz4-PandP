@@ -32,7 +32,7 @@ def interpretation(y_pred):
 
 # wczytanie wytrenowanego modelu
 
-saved_file = 'trained_model.h5'
+saved_file = 'trained_model_user.h5'
 loaded_model = keras.models.load_model(saved_file)
 
 
