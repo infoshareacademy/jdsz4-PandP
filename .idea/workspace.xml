@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="367e039c-1d7e-458c-acaa-8b2c83193a78" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projekt_dl/main_collect.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projekt_dl/main_train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jdsz4-PandP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jdsz4-PandP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projekt_dl/app_gui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projekt_dl/data/x_train.npy" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_dl/data/x_train.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projekt_dl/data/y_train.npy" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_dl/data/y_train.npy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projekt_dl/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_dl/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projekt_dl/main_collect.py" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_dl/main_collect.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projekt_dl/main_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_dl/main_train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projekt_dl/main_user_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_dl/main_user_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projekt_dl/trained_model_user.h5" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_dl/trained_model_user.h5" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +26,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Pawel Alicki &lt;pawel.alicki@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="working" />
@@ -40,11 +47,11 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/projekt_dl" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/projekt_ml/old_files" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/projekt_dl" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -82,6 +89,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="just_testing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="jdsz4-PandP" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/projekt_dl" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/projekt_dl/just_testing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="jdsz4-PandP" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -96,28 +125,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/projekt_dl/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="jdsz4-PandP" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/projekt_ml" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/projekt_ml/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -173,10 +180,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main_train" />
+        <item itemvalue="Python.just_testing" />
         <item itemvalue="Python.main_collect" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.dev_df" />
-        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -198,7 +205,7 @@
       <workItem from="1588062336452" duration="344000" />
       <workItem from="1588169780171" duration="600000" />
       <workItem from="1588877886301" duration="1296000" />
-      <workItem from="1588879617736" duration="8433000" />
+      <workItem from="1588879617736" duration="13274000" />
     </task>
     <task id="LOCAL-00001" summary="attempting to clean up the files and folders">
       <created>1582835848610</created>
@@ -214,7 +221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582905309462</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="creating modules for user model training">
+      <created>1588890076602</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588890076602</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,8 +240,34 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="user_model_training" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="user_model_training" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>
@@ -236,11 +276,13 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="attempting to clean up the files and folders" />
     <MESSAGE value="updating with __init__.py and way of importing our modules" />
-    <option name="LAST_COMMIT_MESSAGE" value="updating with __init__.py and way of importing our modules" />
+    <MESSAGE value="creating modules for user model training" />
+    <option name="LAST_COMMIT_MESSAGE" value="creating modules for user model training" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/jdsz4_PandP_project_dl$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1588169893905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_dl" />
-    <SUITE FILE_PATH="coverage/jdsz4_PandP_project_dl$main_collect.coverage" NAME="main_collect Coverage Results" MODIFIED="1588889684922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_dl" />
-    <SUITE FILE_PATH="coverage/jdsz4_PandP_project_dl$main_train.coverage" NAME="main_train Coverage Results" MODIFIED="1588889916420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_dl" />
+    <SUITE FILE_PATH="coverage/jdsz4_PandP_project_dl$just_testing.coverage" NAME="just_testing Coverage Results" MODIFIED="1588952814211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_dl" />
+    <SUITE FILE_PATH="coverage/jdsz4_PandP_project_dl$main_collect.coverage" NAME="main_collect Coverage Results" MODIFIED="1588952256448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_dl" />
+    <SUITE FILE_PATH="coverage/jdsz4_PandP_project_dl$main_train.coverage" NAME="main_train Coverage Results" MODIFIED="1588952830588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_dl" />
   </component>
 </project>

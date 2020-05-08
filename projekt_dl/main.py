@@ -45,7 +45,7 @@ def predict_letter(img):
 
 
 cap = cv2.VideoCapture(0)
-#img_counter = 0
+
 images = []
 # font definition
 font = cv2.FONT_HERSHEY_SIMPLEX
@@ -103,5 +103,3 @@ while(True):
 # When everything done, release the capture
 cap.release()
 cv2.destroyAllWindows()
-# np.array(images)
-# print('predict: ',predict_letter(images[0]))

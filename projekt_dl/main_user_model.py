@@ -74,7 +74,7 @@ while(True):
     preview_img = cv2.flip(preview_img,1)
     # preparing images that we want to process
     process_img = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
-    process_img = cv2.resize(process_img,(28,28))
+    process_img = cv2.resize(process_img,(100,100))
 
     # using model to predict the letter
     onScreenText = predict_letter(process_img)
@@ -103,5 +103,3 @@ while(True):
 # When everything done, release the capture
 cap.release()
 cv2.destroyAllWindows()
-# np.array(images)
-# print('predict: ',predict_letter(images[0]))

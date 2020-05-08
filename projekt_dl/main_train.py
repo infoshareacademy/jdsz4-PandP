@@ -1,4 +1,3 @@
-import pandas as pd
 import numpy as np
 
 import os.path as path
@@ -25,9 +24,7 @@ base_model.add(keras.layers.Conv2D(64, (3, 3)))
 base_model.add(keras.layers.Activation('relu'))
 base_model.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
 
-# base_model.add(keras.layers.Conv2D(32, (3, 3)))
-# base_model.add(keras.layers.Activation('relu'))
-# base_model.add(keras.layers.MaxPooling2D(pool_size=(2, 2))) # the model so far outputs 3D feature maps (height, width, features)
+# the model so far outputs 3D feature maps (height, width, features)
 
 base_model.add(keras.layers.Flatten())  # this converts our 3D feature maps to 1D feature vectors
 base_model.add(keras.layers.Dense(100))

@@ -60,7 +60,7 @@ while(True):
 
     # preparing images that we want to process
     process_img = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
-    process_img = cv2.resize(process_img,(28,28))
+    process_img = cv2.resize(process_img,(100,100))
 
     # displaying the preview frame
     cv2.imshow("video_capture_window",preview_img)
@@ -78,7 +78,7 @@ while(True):
 
 # after images are collected and in memory creating approriate input-output training data for the model
 x_train = np.array(images_x)
-x_train = x_train.reshape(-1,28,28,1)
+x_train = x_train.reshape(-1,100,100,1)
 y_train = np.array(images_y)
 y_train = OneHotEncoder(categories=signs_categories).fit_transform(y_train.reshape(-1,1)).toarray()
 
