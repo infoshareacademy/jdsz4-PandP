@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-#from ttkthemes import themed_tk as tk
+from ttkthemes import themed_tk as tk
 #from PIL import Image, ImageTk
 
 import os.path as path

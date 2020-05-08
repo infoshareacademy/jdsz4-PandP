@@ -40,11 +40,11 @@ base_model.add(keras.layers.Activation('sigmoid'))
 
 
 base_model.compile(loss='categorical_crossentropy',
-                   optimizer=keras.optimizers.Adam(learning_rate=0.001),
+                   optimizer=keras.optimizers.Adam(learning_rate=0.01),
                    metrics=['accuracy'])
 
 _batch_size = 128
-_epochs = 60
+_epochs = 500
 _validation_split = 0.2
 
 base_model.fit(x_train, y_train, epochs=_epochs, batch_size=_batch_size, validation_split=_validation_split)
