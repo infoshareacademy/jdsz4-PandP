@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="367e039c-1d7e-458c-acaa-8b2c83193a78" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/jdsz4-PandP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jdsz4-PandP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projekt_dl/app_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_dl/app_gui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_dl/main_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_dl/main_train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projekt_dl/data/x_train.npy" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_dl/data/x_train.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projekt_dl/data/y_train.npy" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_dl/data/y_train.npy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projekt_dl/trained_model_user.h5" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_dl/trained_model_user.h5" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +53,18 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/projekt_dl" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Python.app_gui">
     <configuration name="app_gui" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -269,37 +280,26 @@
     <option name="LAST_COMMIT_MESSAGE" value="creating modules for user model training" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1508" height="266" key="GridCell.Tab.0.bottom" timestamp="1588957844326">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1508" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588957844326" />
-    <state width="1508" height="266" key="GridCell.Tab.0.center" timestamp="1588957844326">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1508" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588957844326" />
-    <state width="1508" height="266" key="GridCell.Tab.0.left" timestamp="1588957844325">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1508" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588957844325" />
-    <state width="1508" height="266" key="GridCell.Tab.0.right" timestamp="1588957844326">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1508" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588957844326" />
-    <state x="377" y="162" key="SettingsEditor" timestamp="1588957836386">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="377" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1588957836386" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1588955106010">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588955106010" />
-    <state x="507" y="65" width="737" height="909" key="find.popup" timestamp="1588955797071">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="507" y="65" width="737" height="909" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1588955797071" />
+    <state width="1508" height="266" key="GridCell.Tab.0.bottom" />
+    <state width="1508" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" />
+    <state width="1508" height="266" key="GridCell.Tab.0.center" />
+    <state width="1508" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" />
+    <state width="1508" height="266" key="GridCell.Tab.0.left" />
+    <state width="1508" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" />
+    <state width="1508" height="266" key="GridCell.Tab.0.right" />
+    <state width="1508" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" />
+    <state x="377" y="162" key="SettingsEditor" />
+    <state x="377" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" />
+    <state x="507" y="65" width="737" height="909" key="find.popup" />
+    <state x="507" y="65" width="737" height="909" key="find.popup/0.0.1920.1040@0.0.1920.1040" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/projekt_dl$app_gui.coverage" NAME="app_gui Coverage Results" MODIFIED="1588957844320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_dl" />
-    <SUITE FILE_PATH="coverage/projekt_dl$main_train.coverage" NAME="main_train Coverage Results" MODIFIED="1588955971403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_dl" />
+    <SUITE FILE_PATH="coverage/jdsz4_PandP_project_dl$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1588169893905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_dl" />
+    <SUITE FILE_PATH="coverage/jdsz4_PandP_project_dl$just_testing.coverage" NAME="just_testing Coverage Results" MODIFIED="1588952814211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_dl" />
+    <SUITE FILE_PATH="coverage/jdsz4_PandP_project_dl$app_gui.coverage" NAME="app_gui Coverage Results" MODIFIED="1589046183125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_dl" />
+    <SUITE FILE_PATH="coverage/jdsz4_PandP_project_dl$main_collect.coverage" NAME="main_collect Coverage Results" MODIFIED="1588952256448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_dl" />
+    <SUITE FILE_PATH="coverage/jdsz4_PandP_project_dl$main_train.coverage" NAME="main_train Coverage Results" MODIFIED="1588952830588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/projekt_dl" />
   </component>
 </project>

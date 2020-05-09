@@ -21,7 +21,45 @@ version = 'v0.102'
 
 
 ############# definicje fukcji ##########
+def interpretation(y_pred):
+    y_dict = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g', 7: 'h', 8: 'i', 9: 'k', 10: 'l',
+              11: 'm', 12: 'n', 13: 'o', 14: 'p', 15: 'q', 16: 'r', 17: 's', 18: 't', 19: 'u', 20: 'v',
+              21: 'w', 22: 'x', 23: 'y'}
 
+    i = np.argmax(y_pred)
+    if np.max(y_pred) > 0.95:
+        return y_dict[i]
+    else:
+        return ' '
+
+def interpretation_user(y_pred):
+    y_dict = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g', 7: 'h', 8: 'i', 9: 'k', 10: 'l',
+              11: 'm', 12: 'n', 13: 'o', 14: 'p', 15: 'q', 16: 'r', 17: 's', 18: 't', 19: 'u', 20: 'v',
+              21: 'w', 22: 'x', 23: 'y'}
+
+    i = np.argmax(y_pred)
+    if np.max(y_pred) > 0.95:
+        return y_dict[i]
+    else:
+        return ' '
+
+saved_file_builtin = 'trained_model.h5'
+loaded_model = keras.models.load_model(saved_file_builtin)
+
+saved_file_user = 'trained_model_user.h5'
+loaded_model_user = keras.models.load_model(saved_file_user)
+
+def predict_letter(img):
+    tmpImg = img / 255.0
+    tmpImg = tmpImg.reshape(1, img.shape[0], img.shape[1], 1)
+    predict = loaded_model.predict(tmpImg)
+    return interpretation(predict)
+
+def predict_letter_user(img):
+    tmpImg = img / 255.0
+    tmpImg = tmpImg.reshape(1, img.shape[0], img.shape[1], 1)
+    predict = loaded_model_user.predict(tmpImg)
+    return interpretation_user(predict)
 
 # pomocnicza z kursu tkinter
 def doNothing():
@@ -34,34 +72,14 @@ def run_magic():
 
 ####### pomocnicze zmienne listy itp #####################
 
-def interpretation(y_pred):
-    y_dict = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g', 7: 'h', 8: 'i', 9: 'k', 10: 'l',
-              11: 'm', 12: 'n', 13: 'o', 14: 'p', 15: 'q', 16: 'r', 17: 's', 18: 't', 19: 'u', 20: 'v',
-              21: 'w', 22: 'x', 23: 'y'}
-
-    i = np.argmax(y_pred)
-    if np.max(y_pred) > 0.95:
-        return y_dict[i]
-    else:
-        return ' '
-
-
 # wczytanie wytrenowanego modelu
 
-saved_file = 'trained_model.h5'
-loaded_model = keras.models.load_model(saved_file)
 
-
-def predict_letter(img):
-    tmpImg = img / 255.0
-    tmpImg = tmpImg.reshape(1,img.shape[0],img.shape[1],1)
-    predict = loaded_model.predict(tmpImg)
-    return interpretation(predict)
 
 def mainMain():
+
     cap = cv2.VideoCapture(0)
 
-    images = []
     # font definition
     font = cv2.FONT_HERSHEY_SIMPLEX
     # org
@@ -73,6 +91,7 @@ def mainMain():
     # Line thickness of 2 px
     thickness = 2
     # Using cv2.putText() method
+    
     while (True):
 
         # Capture frame-by-frame
@@ -106,12 +125,7 @@ def mainMain():
             cap.release()
             cv2.destroyAllWindows()
             break
-        if k % 256 == 32:
-            # img_name = "opencv_frame_{}.png".format(img_counter)
-            # cv2.imwrite(img_name, img)
-            # print("{} written!".format(img_name))
-            # img_counter += 1
-            images.append(process_img)
+
     # When everything done, release the capture
     cap.release()
     cv2.destroyAllWindows()
@@ -190,11 +204,14 @@ def mainCollect():
             images_y.append([letters_dict[k]])
 
     # after images are collected and in memory creating approriate input-output training data for the model
-    x_train = np.array(images_x)
-    x_train = x_train.reshape(-1, 100, 100, 1)
-    y_train = np.array(images_y)
-    y_train = OneHotEncoder(categories=signs_categories).fit_transform(y_train.reshape(-1, 1)).toarray()
-
+    if images_x and images_y:
+        x_train = np.array(images_x)
+        x_train = x_train.reshape(-1, 100, 100, 1)
+        y_train = np.array(images_y)
+        y_train = OneHotEncoder(categories=signs_categories).fit_transform(y_train.reshape(-1, 1)).toarray()
+    else:
+        x_train = []
+        y_train = []
     # saving it as a separate file to be used by the training module
     np.save('data/x_train.npy', x_train)
     np.save('data/y_train.npy', y_train)
@@ -250,32 +267,12 @@ def mainTrain():
 
     base_model.save("trained_model_user.h5")
 
+
 def mainUserModel():
-    def interpretation(y_pred):
-        y_dict = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g', 7: 'h', 8: 'i', 9: 'k', 10: 'l',
-                  11: 'm', 12: 'n', 13: 'o', 14: 'p', 15: 'q', 16: 'r', 17: 's', 18: 't', 19: 'u', 20: 'v',
-                  21: 'w', 22: 'x', 23: 'y'}
-
-        i = np.argmax(y_pred)
-        if np.max(y_pred) > 0.95:
-            return y_dict[i]
-        else:
-            return ' '
-
-    # wczytanie wytrenowanego modelu
-
-    saved_file = 'trained_model_user.h5'
-    loaded_model = keras.models.load_model(saved_file)
-
-    def predict_letter(img):
-        tmpImg = img / 255.0
-        tmpImg = tmpImg.reshape(1, img.shape[0], img.shape[1], 1)
-        predict = loaded_model.predict(tmpImg)
-        return interpretation(predict)
 
     cap = cv2.VideoCapture(0)
-    # img_counter = 0
-    images = []
+
+
     # font definition
     font = cv2.FONT_HERSHEY_SIMPLEX
     # org
@@ -287,6 +284,7 @@ def mainUserModel():
     # Line thickness of 2 px
     thickness = 2
     # Using cv2.putText() method
+
     while (True):
 
         # Capture frame-by-frame
@@ -306,9 +304,8 @@ def mainUserModel():
         process_img = cv2.resize(process_img, (100, 100))
 
         # using model to predict the letter
-        onScreenText = predict_letter(process_img)
+        onScreenText = predict_letter_user(process_img)
 
-        # onScreenText = 'B'
         # preparing preview
         preview_img = cv2.putText(preview_img, onScreenText, org, font,
                                   fontScale, color, thickness, cv2.LINE_AA)
@@ -320,12 +317,7 @@ def mainUserModel():
             cap.release()
             cv2.destroyAllWindows()
             break
-        if k % 256 == 32:
-            # img_name = "opencv_frame_{}.png".format(img_counter)
-            # cv2.imwrite(img_name, img)
-            # print("{} written!".format(img_name))
-            # img_counter += 1
-            images.append(process_img)
+
     # When everything done, release the capture
     cap.release()
     cv2.destroyAllWindows()
@@ -354,7 +346,7 @@ ramek może być wiele poziomów, sam stosuje poniżej "ramki w większych ramka
 # "okno programu, nazwa root wzięta z kursu"
 
 root = tk.ThemedTk()
-root.geometry('1000x600')
+root.geometry('850x90')
 root.set_theme("clearlooks")
 
 
@@ -366,7 +358,7 @@ root.set_theme("clearlooks")
 toolbar = ttk.Frame(root)
 toolbar.pack(side = TOP)
 
-#### poniżej definicja przycików używanych, które "pakujemy" w w ramce "toolbar"
+#### poniżej definicja przycisków używanych, które "pakujemy" w w ramce "toolbar"
 #### w dalszej części na podobnej zasadzie są zdefiniowane i "upakowane" pozostałe elementy interfejsu
 
 # *** toolbar buttons *****
@@ -382,14 +374,14 @@ testButt.pack(side=LEFT, padx=10, pady=10)
 testButt = ttk.Button(toolbar, text="USE YOUR MODEL", command=mainUserModel)
 testButt.pack(side=LEFT, padx=10, pady=10)
 
-quitButt = ttk.Button(toolbar, text="Quit", command=root.quit)
+quitButt = ttk.Button(toolbar, text="QUIT", command=root.quit)
 quitButt.pack(side=RIGHT, padx=10, pady=10)
 
 
 
 # ***** Status Bar *****
 
-status = ttk.Label(root, text=f"PandP, ML_project, {version}", relief=GROOVE, anchor=W)
+status = ttk.Label(root, text=f"PandP, DL_project, {version}", relief=GROOVE, anchor=W)
 
 status.pack(side=BOTTOM, fill=X)
 
